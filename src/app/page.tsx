@@ -5,15 +5,15 @@ import { BRAND } from "@/lib/brand";
 const STEPS = [
   {
     title: "1. Regístrate",
-    text: "El profesor crea sus clases y comparte un código de invitación. Los alumnos se registran con ese código en segundos.",
+    text: "Crea tu cuenta con el código que te dio tu profesor y entra a tu clase en segundos.",
   },
   {
     title: "2. Entrena",
-    text: "Cada alumno practica ejercicios de taquistoscopio, lectura cronometrada y amplitud visual a su propio ritmo.",
+    text: "Practica ejercicios de taquistoscopio, lectura cronometrada y amplitud visual a tu propio ritmo.",
   },
   {
-    title: "3. Mide el progreso",
-    text: "El profesor ve en tiempo real la velocidad, comprensión y evolución de cada alumno y de toda la clase.",
+    title: "3. Mejora",
+    text: "Observa cómo tu velocidad y comprensión crecen práctica tras práctica.",
   },
 ];
 
@@ -53,18 +53,18 @@ export default function Home() {
             {BRAND.name} · {BRAND.product}
           </span>
           <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900">
-            Entrena la <span className="text-blue-600">lectura sináptica</span> de tus alumnos
+            Entrena tu <span className="text-blue-600">lectura sináptica cerebral</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
-            Crea tus clases, invita a tus alumnos y déjalos practicar ejercicios de velocidad y
-            comprensión lectora. Tú ves el progreso de cada uno, ellos ven su propia mejora.
+            Practica ejercicios de velocidad y comprensión lectora a tu propio ritmo y observa
+            cómo tu cerebro mejora clase a clase.
           </p>
           <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
             <Link
               href="/register"
               className="rounded-md bg-blue-600 px-6 py-3 text-white font-semibold hover:bg-blue-700 transition shadow-sm"
             >
-              Crear cuenta gratis
+              Registrarme como alumno
             </Link>
             <Link
               href="/login"
