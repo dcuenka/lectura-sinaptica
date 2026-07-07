@@ -78,15 +78,18 @@ export default function Home() {
       </section>
 
       <section className="relative overflow-hidden" style={{ backgroundColor: "#020410" }}>
-        <LetterRain count={30} />
+        <LetterRain count={44} />
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20 grid md:grid-cols-2 gap-8 items-center relative">
-          <div className="relative">
+          <div className="relative pointer-events-none">
+            {/* mix-blend screen: el fondo negro de la foto se vuelve transparente,
+                así la lluvia de letras se ve caer también sobre el niño. */}
             <Image
               src="/nino-cerebro.jpg"
               alt="Niño concentrado leyendo, con su cerebro iluminado"
               width={768}
               height={461}
-              className="w-full h-auto rounded-xl"
+              className="w-full h-auto"
+              style={{ mixBlendMode: "screen" }}
               priority
             />
           </div>
