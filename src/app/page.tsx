@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BRAND } from "@/lib/brand";
+import LetterRain from "@/components/LetterRain";
 
 const STEPS = [
   {
@@ -71,6 +72,38 @@ export default function Home() {
               className="rounded-md bg-white px-6 py-3 text-slate-700 font-semibold border border-slate-300 hover:border-amber-400 transition"
             >
               Ya tengo cuenta
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden" style={{ backgroundColor: "#020410" }}>
+        <LetterRain count={30} />
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20 grid md:grid-cols-2 gap-8 items-center relative">
+          <div className="relative">
+            <Image
+              src="/nino-cerebro.jpg"
+              alt="Niño concentrado leyendo, con su cerebro iluminado"
+              width={768}
+              height={461}
+              className="w-full h-auto rounded-xl"
+              priority
+            />
+          </div>
+          <div className="text-center md:text-left">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+              Cada palabra que lees{" "}
+              <span className="text-blue-300">enciende tu mente</span>
+            </h2>
+            <p className="mt-4 text-blue-100/80 text-lg">
+              En una lluvia de letras, tu cerebro aprende a leer más rápido y a comprender mejor.
+              Entrena hoy y siente cómo cada práctica te vuelve más ágil.
+            </p>
+            <Link
+              href="/register"
+              className="mt-8 inline-block rounded-md bg-amber-400 px-6 py-3 text-blue-950 font-bold hover:bg-amber-300 transition shadow-sm"
+            >
+              Empezar a entrenar
             </Link>
           </div>
         </div>
