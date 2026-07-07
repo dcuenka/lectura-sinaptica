@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// SQLite has no native enum support in Prisma; roles/types are validated in app code (src/lib/constants.ts)
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String
+  createdAt    DateTime @default(now())
+
+  classesTaught ClassGroup[]  @relation("TeacherClasses")
+  enrollments   Enrollment[]
+  attempts      Attempt[]
+}
+
+model ClassGroup {
+  id         String   @id @default(cuid())
+  name       String
+  inviteCode String   @unique
+  teacherId  String
+  teacher    User     @relation("TeacherClasses", fields: [teacherId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  enrollments Enrollment[]
+}
+
+model Enrollment {
+  id           String     @id @default(cuid())
+  userId       String
+  classGroupId String
+  joinedAt     DateTime   @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  classGroup ClassGroup @relation(fields: [classGroupId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, classGroupId])
+}
+
+model Exercise {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  level     Int      @default(1)
+  config    String
+  createdAt DateTime @default(now())
+
+  attempts Attempt[]
+}
+
+model Attempt {
+  id                 String   @id @default(cuid())
+  userId             String
+  exerciseId         String
+  score              Float
+  wpm                Float?
+  comprehensionPct   Float?
+  durationMs         Int
+  createdAt          DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exercise Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+}
