@@ -110,23 +110,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-blue-700 to-blue-600">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 py-16 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">
-            ¿Listo para que tus alumnos empiecen a practicar?
-          </h2>
-          <p className="mt-3 text-blue-100">
-            Crea tu cuenta de profesor, arma tu primera clase y comparte el código con tus alumnos.
-          </p>
-          <Link
-            href="/register"
-            className="mt-8 inline-block rounded-md bg-amber-400 px-6 py-3 text-blue-900 font-bold hover:bg-amber-300 transition shadow-sm"
-          >
-            Empezar ahora
-          </Link>
-        </div>
-      </section>
-
       <footer className="mx-auto max-w-6xl px-4 sm:px-6 py-8 text-center text-sm text-slate-400">
         {BRAND.name} · {BRAND.product} — plataforma de práctica de lectura veloz y comprensión.
       </footer>
