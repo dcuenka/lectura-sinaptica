@@ -22,7 +22,7 @@ export default async function StudentProgressPage() {
 
   return (
     <div className="mx-auto max-w-4xl w-full px-4 sm:px-6 py-10">
-      <Link href="/dashboard/student" className="text-sm text-indigo-600 hover:underline">
+      <Link href="/dashboard/student" className="text-sm text-blue-600 hover:underline">
         ← Mi panel
       </Link>
 

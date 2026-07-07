@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lectura Sináptica",
+  title: "Open Brain · Lectura Sináptica",
   description:
-    "Plataforma de ejercicios de lectura sináptica para que tus alumnos entrenen velocidad y comprensión lectora.",
+    "Open Brain: plataforma de ejercicios de lectura sináptica para que tus alumnos entrenen velocidad y comprensión lectora.",
 };
 
 export default function RootLayout({

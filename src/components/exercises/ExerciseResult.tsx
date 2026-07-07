@@ -46,7 +46,7 @@ export default function ExerciseResult({
 
       <Link
         href="/dashboard/student"
-        className="mt-4 inline-block rounded-md bg-indigo-600 px-5 py-2 text-white font-semibold hover:bg-indigo-700 transition"
+        className="mt-4 inline-block rounded-md bg-blue-600 px-5 py-2 text-white font-semibold hover:bg-blue-700 transition"
       >
         Volver a mi panel
       </Link>

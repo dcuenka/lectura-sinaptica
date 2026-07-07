@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { BRAND } from "@/lib/brand";
 
 const STEPS = [
   {
@@ -36,30 +38,41 @@ const EXERCISES = [
 export default function Home() {
   return (
     <div>
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
-        <span className="inline-block rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold px-4 py-1 mb-6">
-          Para profesores y sus alumnos
-        </span>
-        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900">
-          Entrena la <span className="text-indigo-600">lectura sináptica</span> de tus alumnos
-        </h1>
-        <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
-          Crea tus clases, invita a tus alumnos y déjalos practicar ejercicios de velocidad y
-          comprensión lectora. Tú ves el progreso de cada uno, ellos ven su propia mejora.
-        </p>
-        <div className="mt-10 flex items-center justify-center gap-4">
-          <Link
-            href="/register"
-            className="rounded-md bg-indigo-600 px-6 py-3 text-white font-semibold hover:bg-indigo-700 transition"
-          >
-            Crear cuenta gratis
-          </Link>
-          <Link
-            href="/login"
-            className="rounded-md bg-white px-6 py-3 text-slate-700 font-semibold border border-slate-300 hover:border-indigo-400 transition"
-          >
-            Ya tengo cuenta
-          </Link>
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-50 via-white to-white -z-10" />
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-14 pb-20 sm:pt-20 sm:pb-28 text-center">
+          <Image
+            src={BRAND.logo}
+            alt={BRAND.name}
+            width={120}
+            height={120}
+            priority
+            className="mx-auto h-24 w-24 sm:h-28 sm:w-28 object-contain drop-shadow-sm"
+          />
+          <span className="mt-6 inline-block rounded-full bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1">
+            {BRAND.name} · {BRAND.product}
+          </span>
+          <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900">
+            Entrena la <span className="text-blue-600">lectura sináptica</span> de tus alumnos
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
+            Crea tus clases, invita a tus alumnos y déjalos practicar ejercicios de velocidad y
+            comprensión lectora. Tú ves el progreso de cada uno, ellos ven su propia mejora.
+          </p>
+          <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
+            <Link
+              href="/register"
+              className="rounded-md bg-blue-600 px-6 py-3 text-white font-semibold hover:bg-blue-700 transition shadow-sm"
+            >
+              Crear cuenta gratis
+            </Link>
+            <Link
+              href="/login"
+              className="rounded-md bg-white px-6 py-3 text-slate-700 font-semibold border border-slate-300 hover:border-amber-400 transition"
+            >
+              Ya tengo cuenta
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -71,7 +84,7 @@ export default function Home() {
           <div className="mt-10 grid gap-8 sm:grid-cols-3">
             {STEPS.map((step) => (
               <div key={step.title} className="text-center sm:text-left">
-                <h3 className="font-semibold text-lg text-indigo-700">{step.title}</h3>
+                <h3 className="font-semibold text-lg text-blue-700">{step.title}</h3>
                 <p className="mt-2 text-slate-600">{step.text}</p>
               </div>
             ))}
@@ -87,7 +100,7 @@ export default function Home() {
           {EXERCISES.map((ex) => (
             <div
               key={ex.title}
-              className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition"
+              className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-amber-300 transition"
             >
               <div className="text-3xl">{ex.emoji}</div>
               <h3 className="mt-3 font-semibold text-lg text-slate-900">{ex.title}</h3>
@@ -97,17 +110,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-indigo-600">
+      <section className="bg-gradient-to-r from-blue-700 to-blue-600">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 py-16 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white">
             ¿Listo para que tus alumnos empiecen a practicar?
           </h2>
-          <p className="mt-3 text-indigo-100">
+          <p className="mt-3 text-blue-100">
             Crea tu cuenta de profesor, arma tu primera clase y comparte el código con tus alumnos.
           </p>
           <Link
             href="/register"
-            className="mt-8 inline-block rounded-md bg-white px-6 py-3 text-indigo-700 font-semibold hover:bg-indigo-50 transition"
+            className="mt-8 inline-block rounded-md bg-amber-400 px-6 py-3 text-blue-900 font-bold hover:bg-amber-300 transition shadow-sm"
           >
             Empezar ahora
           </Link>
@@ -115,7 +128,7 @@ export default function Home() {
       </section>
 
       <footer className="mx-auto max-w-6xl px-4 sm:px-6 py-8 text-center text-sm text-slate-400">
-        Lectura Sináptica — plataforma de práctica de lectura veloz y comprensión.
+        {BRAND.name} · {BRAND.product} — plataforma de práctica de lectura veloz y comprensión.
       </footer>
     </div>
   );

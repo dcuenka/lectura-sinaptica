@@ -17,9 +17,10 @@ model User {
   role         String
   createdAt    DateTime @default(now())
 
-  classesTaught ClassGroup[]  @relation("TeacherClasses")
-  enrollments   Enrollment[]
-  attempts      Attempt[]
+  classesTaught    ClassGroup[] @relation("TeacherClasses")
+  enrollments      Enrollment[]
+  attempts         Attempt[]
+  createdExercises Exercise[]   @relation("ExerciseAuthor")
 }
 
 model ClassGroup {
@@ -46,14 +47,16 @@ model Enrollment {
 }
 
 model Exercise {
-  id        String   @id @default(cuid())
-  type      String
-  title     String
-  level     Int      @default(1)
-  config    String
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  type        String
+  title       String
+  level       Int      @default(1)
+  config      String
+  createdById String?
+  createdAt   DateTime @default(now())
 
-  attempts Attempt[]
+  createdBy User?     @relation("ExerciseAuthor", fields: [createdById], references: [id], onDelete: Cascade)
+  attempts  Attempt[]
 }
 
 model Attempt {

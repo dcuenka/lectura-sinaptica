@@ -18,11 +18,11 @@ export default function CopyCode({ code }: { code: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center gap-2 rounded-md bg-indigo-50 px-3 py-1 font-mono text-indigo-700 font-semibold tracking-widest hover:bg-indigo-100 transition"
+      className="inline-flex items-center gap-2 rounded-md bg-blue-50 px-3 py-1 font-mono text-blue-700 font-semibold tracking-widest hover:bg-blue-100 transition"
       title="Copiar código"
     >
       {code}
-      <span className="text-xs font-sans font-normal text-indigo-500">
+      <span className="text-xs font-sans font-normal text-blue-500">
         {copied ? "¡copiado!" : "copiar"}
       </span>
     </button>

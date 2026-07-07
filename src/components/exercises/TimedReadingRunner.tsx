@@ -74,7 +74,7 @@ export default function TimedReadingRunner({
         </p>
         <button
           onClick={startReading}
-          className="mt-6 rounded-md bg-indigo-600 px-6 py-2 text-white font-semibold hover:bg-indigo-700 transition"
+          className="mt-6 rounded-md bg-blue-600 px-6 py-2 text-white font-semibold hover:bg-blue-700 transition"
         >
           Empezar a leer
         </button>
@@ -91,7 +91,7 @@ export default function TimedReadingRunner({
         <div className="mt-4 text-center">
           <button
             onClick={finishReading}
-            className="rounded-md bg-indigo-600 px-6 py-2 text-white font-semibold hover:bg-indigo-700 transition"
+            className="rounded-md bg-blue-600 px-6 py-2 text-white font-semibold hover:bg-blue-700 transition"
           >
             Terminé de leer
           </button>
@@ -112,7 +112,7 @@ export default function TimedReadingRunner({
                   key={oi}
                   className={`flex items-center gap-2 rounded-md border px-3 py-2 cursor-pointer transition ${
                     answers[qi] === oi
-                      ? "border-indigo-500 bg-indigo-50"
+                      ? "border-blue-500 bg-blue-50"
                       : "border-slate-200 hover:border-slate-300"
                   }`}
                 >
@@ -139,7 +139,7 @@ export default function TimedReadingRunner({
           <button
             onClick={finishQuestions}
             disabled={!allAnswered}
-            className="rounded-md bg-indigo-600 px-6 py-2 text-white font-semibold hover:bg-indigo-700 transition disabled:opacity-50"
+            className="rounded-md bg-blue-600 px-6 py-2 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-50"
           >
             Enviar respuestas
           </button>

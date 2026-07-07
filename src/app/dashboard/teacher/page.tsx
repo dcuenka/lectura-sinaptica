@@ -18,10 +18,20 @@ export default async function TeacherDashboard() {
 
   return (
     <div className="mx-auto max-w-5xl w-full px-4 sm:px-6 py-10">
-      <h1 className="text-2xl font-bold text-slate-900">Mis clases</h1>
-      <p className="mt-1 text-slate-500">
-        Crea una clase, comparte el código con tus alumnos y sigue su progreso.
-      </p>
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Mis clases</h1>
+          <p className="mt-1 text-slate-500">
+            Crea una clase, comparte el código con tus alumnos y sigue su progreso.
+          </p>
+        </div>
+        <Link
+          href="/dashboard/teacher/exercises"
+          className="rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-blue-700 font-semibold hover:bg-blue-100 transition"
+        >
+          📝 Gestionar ejercicios
+        </Link>
+      </div>
 
       <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5">
         <CreateClassForm />
@@ -37,7 +47,7 @@ export default async function TeacherDashboard() {
         {classes.map((c) => (
           <div
             key={c.id}
-            className="rounded-xl border border-slate-200 bg-white p-5 hover:border-indigo-400 hover:shadow-sm transition"
+            className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-400 hover:shadow-sm transition"
           >
             <div className="flex items-start justify-between">
               <h2 className="font-semibold text-lg text-slate-900">{c.name}</h2>
@@ -49,7 +59,7 @@ export default async function TeacherDashboard() {
               <CopyCode code={c.inviteCode} />
               <Link
                 href={`/dashboard/teacher/classes/${c.id}`}
-                className="text-sm font-medium text-indigo-600 hover:underline"
+                className="text-sm font-medium text-blue-600 hover:underline"
               >
                 Ver clase →
               </Link>

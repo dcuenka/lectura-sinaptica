@@ -9,7 +9,9 @@ import type {
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.exercise.deleteMany({});
+  // Solo reemplaza los ejercicios de ejemplo (createdById null),
+  // sin tocar los que hayan creado los profesores.
+  await prisma.exercise.deleteMany({ where: { createdById: null } });
 
   const tachistoscopeExercises: { title: string; level: number; config: TachistoscopeConfig }[] = [
     {
@@ -45,6 +47,35 @@ async function main() {
           "el gato duerme en el sofá",
           "compramos fruta fresca",
           "el cielo está despejado",
+        ],
+      },
+    },
+    {
+      title: "Frases largas (avanzado)",
+      level: 4,
+      config: {
+        displayMs: 250,
+        items: [
+          "los estudiantes resolvieron el problema juntos",
+          "la ciudad amaneció cubierta de niebla espesa",
+          "el científico anotó cuidadosamente sus resultados",
+          "aprender a leer rápido requiere práctica diaria",
+          "el río caudaloso atravesaba todo el valle verde",
+        ],
+      },
+    },
+    {
+      title: "Destello relámpago (experto)",
+      level: 5,
+      config: {
+        displayMs: 160,
+        items: [
+          "extraordinario",
+          "la perseverancia construye el éxito",
+          "conocimiento",
+          "pensamiento crítico y análisis profundo",
+          "responsabilidad",
+          "la curiosidad impulsa todo aprendizaje",
         ],
       },
     },
@@ -146,6 +177,51 @@ async function main() {
         ],
       },
     },
+    {
+      title: "El origen de la escritura (avanzado)",
+      level: 4,
+      config: {
+        text:
+          "La escritura no apareció de un día para otro, sino que fue el resultado de miles de años de necesidad humana por registrar información. Las primeras marcas conocidas surgieron en Mesopotamia hacia el año 3300 antes de Cristo, cuando los comerciantes necesitaban llevar la cuenta de sus granos y ganado. Al principio usaban pequeñas fichas de arcilla con símbolos, pero con el tiempo esos símbolos se grabaron directamente sobre tablillas húmedas usando una caña puntiaguda. Este sistema, llamado cuneiforme, permitió no solo anotar transacciones, sino también leyes, poemas y relatos. Con la escritura, por primera vez en la historia, el conocimiento pudo viajar a través del tiempo y del espacio sin depender de la memoria de una persona. Civilizaciones muy distantes desarrollaron sus propios sistemas de forma independiente, como los jeroglíficos egipcios o los caracteres chinos, demostrando que la necesidad de comunicarse por escrito es una constante de la humanidad.",
+        questions: [
+          {
+            question: "¿Por qué surgió originalmente la escritura?",
+            options: [
+              "Para escribir poemas",
+              "Para llevar la cuenta de granos y ganado",
+              "Para redactar leyes",
+              "Para enviar cartas de amor",
+            ],
+            correctIndex: 1,
+          },
+          {
+            question: "¿Cómo se llama el sistema de escritura de Mesopotamia?",
+            options: ["Jeroglífico", "Alfabético", "Cuneiforme", "Braille"],
+            correctIndex: 2,
+          },
+          {
+            question: "Según el texto, ¿qué permitió la escritura por primera vez?",
+            options: [
+              "Que el conocimiento viajara en el tiempo sin depender de la memoria",
+              "Que la gente hablara más rápido",
+              "Que desaparecieran los comerciantes",
+              "Que todos aprendieran a leer",
+            ],
+            correctIndex: 0,
+          },
+          {
+            question: "¿Qué demuestran los jeroglíficos egipcios y los caracteres chinos?",
+            options: [
+              "Que Mesopotamia copió a Egipto",
+              "Que solo una civilización inventó la escritura",
+              "Que distintas civilizaciones crearon sistemas de forma independiente",
+              "Que la escritura es reciente",
+            ],
+            correctIndex: 2,
+          },
+        ],
+      },
+    },
   ];
 
   const visualSpanExercises: { title: string; level: number; config: VisualSpanConfig }[] = [
@@ -185,6 +261,32 @@ async function main() {
           ["uno", "dos", "tres", "cuatro"],
           ["lunes", "martes", "miércoles", "jueves"],
           ["manzana", "pera", "uva", "kiwi"],
+        ],
+      },
+    },
+    {
+      title: "Cinco palabras (avanzado)",
+      level: 4,
+      config: {
+        displayMs: 380,
+        rows: [
+          ["árbol", "flor", "hoja", "raíz", "tallo"],
+          ["cero", "cinco", "diez", "quince", "veinte"],
+          ["azul", "rojo", "verde", "negro", "blanco"],
+          ["perro", "gato", "pez", "ave", "rana"],
+        ],
+      },
+    },
+    {
+      title: "Amplitud experta (seis)",
+      level: 5,
+      config: {
+        displayMs: 280,
+        rows: [
+          ["sol", "mar", "luz", "paz", "voz", "red"],
+          ["enero", "marzo", "mayo", "julio", "agosto", "octubre"],
+          ["norte", "sur", "este", "oeste", "centro", "borde"],
+          ["mente", "idea", "foco", "meta", "logro", "reto"],
         ],
       },
     },

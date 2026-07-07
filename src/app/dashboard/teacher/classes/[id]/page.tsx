@@ -40,7 +40,7 @@ export default async function ClassDetailPage({
 
   return (
     <div className="mx-auto max-w-5xl w-full px-4 sm:px-6 py-10">
-      <Link href="/dashboard/teacher" className="text-sm text-indigo-600 hover:underline">
+      <Link href="/dashboard/teacher" className="text-sm text-blue-600 hover:underline">
         ← Mis clases
       </Link>
 

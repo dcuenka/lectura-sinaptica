@@ -19,8 +19,20 @@ export default async function StudentDashboard() {
   const session = await auth();
   const userId = session!.user.id;
 
+  // Teachers of the classes this student is enrolled in.
+  const enrollments = await prisma.enrollment.findMany({
+    where: { userId },
+    include: { classGroup: { select: { teacherId: true } } },
+  });
+  const teacherIds = enrollments.map((e) => e.classGroup.teacherId);
+
   const [exercises, attempts] = await Promise.all([
-    prisma.exercise.findMany({ orderBy: [{ type: "asc" }, { level: "asc" }] }),
+    prisma.exercise.findMany({
+      where: {
+        OR: [{ createdById: null }, { createdById: { in: teacherIds } }],
+      },
+      orderBy: [{ type: "asc" }, { level: "asc" }],
+    }),
     prisma.attempt.findMany({ where: { userId } }),
   ]);
 
@@ -48,7 +60,7 @@ export default async function StudentDashboard() {
         />
         <Link
           href="/dashboard/student/progress"
-          className="rounded-xl border border-indigo-200 bg-indigo-50 p-4 flex flex-col justify-center items-center text-indigo-700 font-medium hover:bg-indigo-100 transition"
+          className="rounded-xl border border-blue-200 bg-blue-50 p-4 flex flex-col justify-center items-center text-blue-700 font-medium hover:bg-blue-100 transition"
         >
           Ver mi progreso →
         </Link>
@@ -65,9 +77,9 @@ export default async function StudentDashboard() {
                 <Link
                   key={ex.id}
                   href={`/exercises/${EXERCISE_TYPE_SLUGS[type]}/${ex.id}`}
-                  className="rounded-xl border border-slate-200 bg-white p-4 hover:border-indigo-400 hover:shadow-sm transition"
+                  className="rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-400 hover:shadow-sm transition"
                 >
-                  <div className="text-xs font-medium text-indigo-600">Nivel {ex.level}</div>
+                  <div className="text-xs font-medium text-blue-600">Nivel {ex.level}</div>
                   <div className="mt-1 font-medium text-slate-900">{ex.title}</div>
                 </Link>
               ))}

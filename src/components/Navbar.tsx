@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { auth, signOut } from "@/lib/auth";
 import { ROLES } from "@/lib/constants";
+import { BRAND } from "@/lib/brand";
 
 export default async function Navbar() {
   const session = await auth();
@@ -11,15 +13,27 @@ export default async function Navbar() {
   return (
     <header className="border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-indigo-700">
-          <span className="text-2xl">🧠</span>
-          Lectura Sináptica
+        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-blue-800">
+          <Image
+            src={BRAND.logo}
+            alt={BRAND.name}
+            width={40}
+            height={40}
+            priority
+            className="h-9 w-9 object-contain"
+          />
+          <span className="leading-none">
+            {BRAND.name}
+            <span className="block text-[11px] font-medium text-amber-500 tracking-wide">
+              {BRAND.product}
+            </span>
+          </span>
         </Link>
 
         <nav className="flex items-center gap-4 text-sm font-medium">
           {session ? (
             <>
-              <Link href={dashboardHref} className="text-slate-600 hover:text-indigo-700">
+              <Link href={dashboardHref} className="text-slate-600 hover:text-blue-700">
                 Mi panel
               </Link>
               <span className="hidden sm:inline text-slate-400">
@@ -38,12 +52,12 @@ export default async function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className="text-slate-600 hover:text-indigo-700">
+              <Link href="/login" className="text-slate-600 hover:text-blue-700">
                 Iniciar sesión
               </Link>
               <Link
                 href="/register"
-                className="rounded-md bg-indigo-600 px-4 py-1.5 text-white hover:bg-indigo-700 transition"
+                className="rounded-md bg-blue-600 px-4 py-1.5 text-white hover:bg-blue-700 transition"
               >
                 Registrarse
               </Link>

@@ -14,12 +14,12 @@ export default function CreateClassForm() {
         name="name"
         required
         placeholder="Nombre de la clase (ej: 5to Grado B)"
-        className="flex-1 rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="flex-1 rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-700 transition disabled:opacity-60 whitespace-nowrap"
+        className="rounded-md bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-60 whitespace-nowrap"
       >
         {pending ? "Creando..." : "+ Crear clase"}
       </button>

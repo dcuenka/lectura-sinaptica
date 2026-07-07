@@ -92,7 +92,7 @@ export default function TachistoscopeRunner({
         </p>
         <button
           onClick={start}
-          className="mt-6 rounded-md bg-indigo-600 px-6 py-2 text-white font-semibold hover:bg-indigo-700 transition"
+          className="mt-6 rounded-md bg-blue-600 px-6 py-2 text-white font-semibold hover:bg-blue-700 transition"
         >
           Empezar
         </button>
@@ -130,12 +130,12 @@ export default function TachistoscopeRunner({
             autoFocus
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-center focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Escribe lo que leíste"
           />
           <button
             type="submit"
-            className="mt-3 rounded-md bg-indigo-600 px-5 py-2 text-white font-semibold hover:bg-indigo-700 transition"
+            className="mt-3 rounded-md bg-blue-600 px-5 py-2 text-white font-semibold hover:bg-blue-700 transition"
           >
             Siguiente
           </button>

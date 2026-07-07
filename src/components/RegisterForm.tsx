@@ -24,7 +24,7 @@ export default function RegisterForm() {
             onClick={() => setRole(ROLES.STUDENT)}
             className={`rounded-md border px-4 py-2 text-sm font-semibold transition ${
               role === ROLES.STUDENT
-                ? "border-indigo-600 bg-indigo-50 text-indigo-700"
+                ? "border-blue-600 bg-blue-50 text-blue-700"
                 : "border-slate-300 text-slate-600"
             }`}
           >
@@ -35,7 +35,7 @@ export default function RegisterForm() {
             onClick={() => setRole(ROLES.TEACHER)}
             className={`rounded-md border px-4 py-2 text-sm font-semibold transition ${
               role === ROLES.TEACHER
-                ? "border-indigo-600 bg-indigo-50 text-indigo-700"
+                ? "border-blue-600 bg-blue-50 text-blue-700"
                 : "border-slate-300 text-slate-600"
             }`}
           >
@@ -50,7 +50,7 @@ export default function RegisterForm() {
         <input
           name="name"
           required
-          className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -60,7 +60,7 @@ export default function RegisterForm() {
           name="email"
           type="email"
           required
-          className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -71,7 +71,7 @@ export default function RegisterForm() {
           type="password"
           required
           minLength={6}
-          className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -84,7 +84,7 @@ export default function RegisterForm() {
             name="inviteCode"
             required
             placeholder="Ej: A3F9K2"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 uppercase focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 uppercase focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <p className="mt-1 text-xs text-slate-500">
             Pídeselo a tu profesor. Sin este código no puedes registrarte como alumno.
@@ -95,7 +95,7 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-700 transition disabled:opacity-60"
+        className="w-full rounded-md bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-60"
       >
         {pending ? "Creando cuenta..." : "Crear cuenta"}
       </button>
