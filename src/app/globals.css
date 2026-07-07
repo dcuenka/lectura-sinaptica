@@ -16,3 +16,41 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Lluvia de letras (sección del niño en la portada) */
+@keyframes letter-fall {
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--drop-opacity, 0.85);
+  }
+  85% {
+    opacity: var(--drop-opacity, 0.85);
+  }
+  100% {
+    transform: translateY(320px);
+    opacity: 0;
+  }
+}
+
+.letter-drop {
+  position: absolute;
+  top: 0;
+  animation-name: letter-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+  color: #bfdbfe;
+  text-shadow: 0 0 8px rgba(147, 197, 253, 0.9);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-drop {
+    animation: none;
+    opacity: 0.5;
+  }
+}
