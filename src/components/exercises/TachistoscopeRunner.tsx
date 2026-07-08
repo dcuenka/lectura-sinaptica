@@ -5,8 +5,9 @@ import { submitAttempt } from "@/lib/actions/attempts";
 import type { TachistoscopeConfig } from "@/lib/exercise-configs";
 import ExerciseResult from "./ExerciseResult";
 import ExerciseProgress from "./ExerciseProgress";
+import { playCorrect, playWrong } from "@/lib/sounds";
 
-type Phase = "intro" | "countdown" | "flash" | "answer" | "done";
+type Phase = "intro" | "countdown" | "flash" | "answer" | "feedback" | "done";
 
 function normalize(s: string) {
   return s
@@ -32,6 +33,7 @@ export default function TachistoscopeRunner({
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
+  const [lastCorrect, setLastCorrect] = useState(false);
 
   const total = config.items.length;
 
@@ -47,6 +49,35 @@ export default function TachistoscopeRunner({
     return () => clearTimeout(t);
   }, [phase, config.displayMs]);
 
+  async function finish() {
+    setPhase("done");
+    const score = (correctCount / total) * 100;
+    setFinalScore(score);
+    const durationMs = Date.now() - startedAt;
+    setSaving(true);
+    try {
+      await submitAttempt({ exerciseId, score, durationMs });
+      setSaved(true);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  // Tras el feedback inmediato, avanza al siguiente o termina.
+  useEffect(() => {
+    if (phase !== "feedback") return;
+    const t = setTimeout(() => {
+      if (index + 1 < total) {
+        setIndex((i) => i + 1);
+        setPhase("countdown");
+      } else {
+        finish();
+      }
+    }, 1200);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
+
   function start() {
     setStartedAt(Date.now());
     setIndex(0);
@@ -57,30 +88,12 @@ export default function TachistoscopeRunner({
   function submitAnswer() {
     const item = config.items[index];
     const isCorrect = normalize(answer) === normalize(item);
-    const updatedCorrectCount = correctCount + (isCorrect ? 1 : 0);
-    setCorrectCount(updatedCorrectCount);
+    setCorrectCount((c) => c + (isCorrect ? 1 : 0));
+    setLastCorrect(isCorrect);
     setAnswer("");
-
-    if (index + 1 < total) {
-      setIndex((i) => i + 1);
-      setPhase("countdown");
-    } else {
-      finish(updatedCorrectCount);
-    }
-  }
-
-  async function finish(finalCorrectCount: number) {
-    setPhase("done");
-    const score = (finalCorrectCount / total) * 100;
-    setFinalScore(score);
-    const durationMs = Date.now() - startedAt;
-    setSaving(true);
-    try {
-      await submitAttempt({ exerciseId, score, durationMs });
-      setSaved(true);
-    } finally {
-      setSaving(false);
-    }
+    if (isCorrect) playCorrect();
+    else playWrong();
+    setPhase("feedback");
   }
 
   if (phase === "intro") {
@@ -113,12 +126,30 @@ export default function TachistoscopeRunner({
         label={`Palabra ${index + 1} de ${total}`}
       />
 
-      <div className="h-40 flex items-center justify-center rounded-xl border border-slate-200 bg-white">
+      <div
+        className={`h-40 flex flex-col items-center justify-center rounded-xl border-2 bg-white transition ${
+          phase === "feedback"
+            ? lastCorrect
+              ? "border-green-400 bg-green-50"
+              : "border-red-300 bg-red-50"
+            : "border-slate-200"
+        }`}
+      >
         {phase === "countdown" && <span className="text-slate-400">Prepárate...</span>}
         {phase === "flash" && (
           <span className="text-3xl font-bold text-slate-900">{config.items[index]}</span>
         )}
         {phase === "answer" && <span className="text-slate-300 text-sm">¿Qué viste?</span>}
+        {phase === "feedback" && (
+          <>
+            <span className={`text-lg font-bold ${lastCorrect ? "text-green-700" : "text-red-600"}`}>
+              {lastCorrect ? "¡Correcto! ✓" : "Casi..."}
+            </span>
+            <span className="mt-1 text-slate-600 text-sm">
+              Era: <strong>{config.items[index]}</strong>
+            </span>
+          </>
+        )}
       </div>
 
       {phase === "answer" && (

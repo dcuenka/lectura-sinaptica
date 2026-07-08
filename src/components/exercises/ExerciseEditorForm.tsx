@@ -17,6 +17,7 @@ import type {
   TimedReadingConfig,
   VisualSpanConfig,
   WordBuildConfig,
+  OratoryConfig,
 } from "@/lib/exercise-configs";
 
 type EditableQuestion = {
@@ -32,7 +33,12 @@ export type ExerciseInitial = {
   level: number;
   ageMin: number;
   ageMax: number;
-  config: TachistoscopeConfig | TimedReadingConfig | VisualSpanConfig | WordBuildConfig;
+  config:
+    | TachistoscopeConfig
+    | TimedReadingConfig
+    | VisualSpanConfig
+    | WordBuildConfig
+    | OratoryConfig;
 };
 
 const initialState: FormState = undefined;
@@ -91,6 +97,9 @@ export default function ExerciseEditorForm({
   const wConfig = initial?.type === EXERCISE_TYPES.WORD_BUILD
     ? (initial.config as WordBuildConfig)
     : null;
+  const oConfig = initial?.type === EXERCISE_TYPES.ORATORY
+    ? (initial.config as OratoryConfig)
+    : null;
 
   return (
     <form action={formAction} className="space-y-6">
@@ -106,7 +115,7 @@ export default function ExerciseEditorForm({
           <label className="block text-sm font-medium text-slate-700 mb-2">
             Tipo de ejercicio
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
             {Object.values(EXERCISE_TYPES).map((t) => (
               <button
                 key={t}
@@ -258,6 +267,31 @@ export default function ExerciseEditorForm({
             />
             <p className="mt-1 text-xs text-slate-500">
               El alumno verá la pista y las letras desordenadas para formar la palabra.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ORATORY (oratoria) fields */}
+      {type === EXERCISE_TYPES.ORATORY && (
+        <div className="space-y-4 rounded-lg border border-slate-200 p-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+              Retos (uno por línea, formato: título | consigna | técnica | segundos)
+            </label>
+            <textarea
+              name="items"
+              rows={6}
+              required
+              defaultValue={oConfig?.items
+                .map((it) => `${it.title} | ${it.prompt} | ${it.tip} | ${it.seconds}`)
+                .join("\n")}
+              placeholder={"Mi día | Cuenta qué hiciste hoy | Ordena con primero/después | 30"}
+              className={inputClass}
+            />
+            <p className="mt-1 text-xs text-slate-500">
+              El alumno verá la consigna y la técnica, tendrá un temporizador para hablar y luego se
+              autoevalúa.
             </p>
           </div>
         </div>

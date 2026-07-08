@@ -5,8 +5,9 @@ import { submitAttempt } from "@/lib/actions/attempts";
 import type { VisualSpanConfig } from "@/lib/exercise-configs";
 import ExerciseResult from "./ExerciseResult";
 import ExerciseProgress from "./ExerciseProgress";
+import { playCorrect, playWrong } from "@/lib/sounds";
 
-type Phase = "intro" | "countdown" | "flash" | "answer" | "done";
+type Phase = "intro" | "countdown" | "flash" | "answer" | "feedback" | "done";
 
 function normalizeWord(s: string) {
   return s.trim().toLowerCase();
@@ -22,12 +23,13 @@ export default function VisualSpanRunner({
   const [phase, setPhase] = useState<Phase>("intro");
   const [rowIndex, setRowIndex] = useState(0);
   const [answer, setAnswer] = useState("");
-  const [correctWords, setCorrectWords] = useState(0);
-  const [totalWords, setTotalWords] = useState(0);
   const [startedAt, setStartedAt] = useState(0);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
+  const [lastRowCorrect, setLastRowCorrect] = useState(0);
+  const [accCorrect, setAccCorrect] = useState(0);
+  const [accTotal, setAccTotal] = useState(0);
 
   const totalRows = config.rows.length;
 
@@ -43,37 +45,9 @@ export default function VisualSpanRunner({
     return () => clearTimeout(t);
   }, [phase, config.displayMs]);
 
-  function start() {
-    setStartedAt(Date.now());
-    setRowIndex(0);
-    setCorrectWords(0);
-    setTotalWords(0);
-    setPhase("countdown");
-  }
-
-  function submitAnswer() {
-    const row = config.rows[rowIndex];
-    const guessed = new Set(answer.split(/\s+/).filter(Boolean).map(normalizeWord));
-    const actual = row.map(normalizeWord);
-    const rowCorrect = actual.filter((w) => guessed.has(w)).length;
-
-    const updatedCorrect = correctWords + rowCorrect;
-    const updatedTotal = totalWords + actual.length;
-    setCorrectWords(updatedCorrect);
-    setTotalWords(updatedTotal);
-    setAnswer("");
-
-    if (rowIndex + 1 < totalRows) {
-      setRowIndex((i) => i + 1);
-      setPhase("countdown");
-    } else {
-      finish(updatedCorrect, updatedTotal);
-    }
-  }
-
-  async function finish(finalCorrect: number, finalTotal: number) {
+  async function finish() {
     setPhase("done");
-    const score = (finalCorrect / finalTotal) * 100;
+    const score = accTotal > 0 ? (accCorrect / accTotal) * 100 : 0;
     setFinalScore(score);
     const durationMs = Date.now() - startedAt;
     setSaving(true);
@@ -83,6 +57,43 @@ export default function VisualSpanRunner({
     } finally {
       setSaving(false);
     }
+  }
+
+  useEffect(() => {
+    if (phase !== "feedback") return;
+    const t = setTimeout(() => {
+      if (rowIndex + 1 < totalRows) {
+        setRowIndex((i) => i + 1);
+        setPhase("countdown");
+      } else {
+        finish();
+      }
+    }, 1400);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
+
+  function start() {
+    setStartedAt(Date.now());
+    setRowIndex(0);
+    setAccCorrect(0);
+    setAccTotal(0);
+    setPhase("countdown");
+  }
+
+  function submitAnswer() {
+    const row = config.rows[rowIndex];
+    const guessed = new Set(answer.split(/\s+/).filter(Boolean).map(normalizeWord));
+    const actual = row.map(normalizeWord);
+    const rowCorrect = actual.filter((w) => guessed.has(w)).length;
+
+    setAccCorrect((c) => c + rowCorrect);
+    setAccTotal((t) => t + actual.length);
+    setLastRowCorrect(rowCorrect);
+    setAnswer("");
+    if (rowCorrect > 0) playCorrect();
+    else playWrong();
+    setPhase("feedback");
   }
 
   if (phase === "intro") {
@@ -117,15 +128,42 @@ export default function VisualSpanRunner({
         label={`Fila ${rowIndex + 1} de ${totalRows}`}
       />
 
-      <div className="h-32 flex items-center justify-center gap-4 rounded-xl border border-slate-200 bg-white px-4">
+      <div
+        className={`min-h-32 flex flex-col items-center justify-center gap-2 rounded-xl border-2 bg-white px-4 py-4 transition ${
+          phase === "feedback"
+            ? lastRowCorrect > 0
+              ? "border-green-400 bg-green-50"
+              : "border-red-300 bg-red-50"
+            : "border-slate-200"
+        }`}
+      >
         {phase === "countdown" && <span className="text-slate-400">Prepárate...</span>}
-        {phase === "flash" &&
-          row.map((word, i) => (
-            <span key={i} className="text-2xl font-bold text-slate-900">
-              {word}
-            </span>
-          ))}
+        {phase === "flash" && (
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {row.map((word, i) => (
+              <span key={i} className="text-2xl font-bold text-slate-900">
+                {word}
+              </span>
+            ))}
+          </div>
+        )}
         {phase === "answer" && <span className="text-slate-300 text-sm">¿Qué palabras viste?</span>}
+        {phase === "feedback" && (
+          <>
+            <span
+              className={`text-sm font-bold ${lastRowCorrect > 0 ? "text-green-700" : "text-red-600"}`}
+            >
+              {lastRowCorrect} de {row.length} correctas
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {row.map((word, i) => (
+                <span key={i} className="text-xl font-semibold text-slate-800">
+                  {word}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       {phase === "answer" && (

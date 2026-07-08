@@ -5,6 +5,7 @@ import type {
   TimedReadingConfig,
   VisualSpanConfig,
   WordBuildConfig,
+  OratoryConfig,
 } from "../src/lib/exercise-configs";
 
 const prisma = new PrismaClient();
@@ -107,6 +108,57 @@ const TIER_LEXICON: { word: string; hint: string }[][] = [
     { word: "connotacion", hint: "Significado sugerido, más allá del literal" },
     { word: "polisemia", hint: "Cuando una palabra tiene varios sentidos" },
     { word: "quintaesencia", hint: "Lo más puro y esencial de algo" },
+  ],
+];
+
+/* ------------------------------------------------------------------ */
+/*  Oratoria: retos con técnicas reconocidas, graduados por tier.      */
+/* ------------------------------------------------------------------ */
+
+type OItem = OratoryConfig["items"][number];
+
+const ORATORY_ITEMS: OItem[][] = [
+  // tier 1 (6-8): dicción y confianza
+  [
+    { title: "Trabalenguas", prompt: "Di tres veces, cada vez más rápido: «Tres tristes tigres tragaban trigo en un trigal».", tip: "Vocaliza: abre bien la boca y pronuncia cada sílaba con claridad.", seconds: 25 },
+    { title: "Mi juguete favorito", prompt: "Cuéntale a la clase cuál es tu juguete favorito y por qué te gusta.", tip: "Mira al frente e imagina que hablas con un amigo.", seconds: 25 },
+    { title: "Mi día", prompt: "Cuenta qué hiciste hoy desde que te levantaste, en orden.", tip: "Usa palabras como «primero», «después» y «al final» para ordenar.", seconds: 30 },
+    { title: "El animal misterioso", prompt: "Describe un animal sin decir su nombre, para que los demás lo adivinen.", tip: "Habla despacio y haz una pausa antes de la pista más importante.", seconds: 30 },
+  ],
+  // tier 2 (8-11): estructura sencilla y volumen
+  [
+    { title: "Mi lugar favorito", prompt: "Describe tu lugar favorito: cómo es, qué se ve, se oye y se siente allí.", tip: "Usa los cinco sentidos para que los demás lo imaginen.", seconds: 35 },
+    { title: "Cuenta una película", prompt: "Resume tu película o cuento favorito: inicio, parte emocionante y final.", tip: "Toda historia tiene principio, nudo y desenlace. No cuentes todo: crea intriga.", seconds: 40 },
+    { title: "Trabalenguas", prompt: "Repite claro y rápido: «Pablito clavó un clavito en la calva de un calvito».", tip: "Respira antes de empezar y no corras: la claridad vence a la velocidad.", seconds: 30 },
+    { title: "Convénceme", prompt: "Convence a la clase de cuál es el mejor postre y por qué.", tip: "Da tres razones. La regla de tres hace tu mensaje memorable.", seconds: 35 },
+  ],
+  // tier 3 (11-14): PREP y anécdotas
+  [
+    { title: "Opina con PREP", prompt: "Da tu opinión sobre si los deberes ayudan a aprender.", tip: "Estructura PREP: Punto, Razón, Ejemplo y repite el Punto al cerrar.", seconds: 45 },
+    { title: "Cuenta una anécdota", prompt: "Narra algo divertido o sorprendente que te haya pasado.", tip: "Storytelling: pon emoción, un pequeño conflicto y un final claro.", seconds: 45 },
+    { title: "El poder de la pausa", prompt: "Explica tu pasatiempo favorito haciendo una pausa de 2 segundos entre cada idea.", tip: "El silencio da fuerza. Una pausa bien puesta se escucha más que gritar.", seconds: 45 },
+    { title: "Improvisa", prompt: "Habla de un objeto que tengas cerca como si fuera lo más interesante del mundo.", tip: "Si te bloqueas, describe qué es, para qué sirve y por qué importa.", seconds: 40 },
+  ],
+  // tier 4 (14-19): persuasión y gancho
+  [
+    { title: "Gancho inicial", prompt: "Empieza un discurso con una pregunta o dato sorprendente sobre la tecnología.", tip: "Los primeros 10 segundos capturan a la audiencia: abre con un gancho.", seconds: 50 },
+    { title: "Discurso persuasivo", prompt: "Defiende una postura: «Leer todos los días cambia tu vida».", tip: "Afirmación + argumento + evidencia + llamada a la acción.", seconds: 55 },
+    { title: "Variación vocal", prompt: "Cuenta una noticia cambiando el ritmo: partes lentas y partes rápidas.", tip: "Varía tono, volumen y velocidad para no sonar monótono.", seconds: 45 },
+    { title: "Regla de tres", prompt: "Explica por qué alguien debería aprender oratoria usando exactamente tres razones.", tip: "«Educa, entretiene, inspira»: los grupos de tres se recuerdan mejor.", seconds: 45 },
+  ],
+  // tier 5 (19-31): argumentación y presencia
+  [
+    { title: "Argumenta una postura", prompt: "Toma partido sobre el trabajo remoto y defiéndelo con lógica.", tip: "Anticipa la objeción contraria y respóndela: te hace más creíble.", seconds: 60 },
+    { title: "Storytelling con propósito", prompt: "Cuenta una historia personal que enseñe una lección.", tip: "Estructura: situación, complicación, resolución y aprendizaje.", seconds: 60 },
+    { title: "Contacto visual y postura", prompt: "Preséntate como si fuera una entrevista de trabajo.", tip: "Postura firme, hombros atrás, y reparte la mirada como si hablaras a varias personas.", seconds: 50 },
+    { title: "Cierre memorable", prompt: "Termina un discurso sobre tus metas con una frase que se recuerde.", tip: "Cierra con una imagen potente o un llamado a la acción, no con «eso es todo».", seconds: 45 },
+  ],
+  // tier 6 (31-65): dominio y matices
+  [
+    { title: "Improvisación estructurada", prompt: "Recibes el tema «el tiempo» y hablas 60 s con introducción, desarrollo y cierre.", tip: "Aun improvisando, piensa en tres bloques: abrir, desarrollar, cerrar.", seconds: 60 },
+    { title: "Manejo de pausas y énfasis", prompt: "Lee o improvisa un mensaje importante marcando con pausas las ideas clave.", tip: "El énfasis no es volumen: es pausa antes y después de la palabra clave.", seconds: 60 },
+    { title: "Persuasión ética", prompt: "Convence a un público escéptico de adoptar un buen hábito.", tip: "Combina ethos (credibilidad), logos (razón) y pathos (emoción).", seconds: 75 },
+    { title: "Discurso inspirador", prompt: "Da un breve discurso motivador para alguien que va a rendirse.", tip: "Usa una anécdota, la regla de tres y un cierre con llamada a la acción.", seconds: 75 },
   ],
 ];
 
@@ -328,6 +380,12 @@ function timedReadingFor(level: number): TimedReadingConfig {
   return READINGS[level - 1];
 }
 
+function oratoryFor(level: number): OratoryConfig {
+  const tier = tierOf(level);
+  const pool = ORATORY_ITEMS[tier - 1];
+  return { items: pick(pool, 3, level) };
+}
+
 /* ------------------------------------------------------------------ */
 
 async function main() {
@@ -384,10 +442,21 @@ async function main() {
       },
     });
 
-    created += 4;
+    await prisma.exercise.create({
+      data: {
+        type: EXERCISE_TYPES.ORATORY,
+        title: `Oratoria · Nivel ${level} (${ageTag})`,
+        level,
+        ageMin,
+        ageMax,
+        config: JSON.stringify(oratoryFor(level)),
+      },
+    });
+
+    created += 5;
   }
 
-  console.log(`Seed completado: ${created} ejercicios (18 niveles × 4 tipos).`);
+  console.log(`Seed completado: ${created} ejercicios (18 niveles × 5 tipos).`);
 }
 
 main()

@@ -10,6 +10,7 @@ import type {
   TimedReadingConfig,
   VisualSpanConfig,
   WordBuildConfig,
+  OratoryConfig,
 } from "@/lib/exercise-configs";
 import { MIN_AGE, MAX_AGE } from "@/lib/constants";
 
@@ -70,6 +71,30 @@ function buildConfig(type: ExerciseType, formData: FormData): { config: string }
         error: "Agrega al menos una palabra con pista, en formato: palabra | pista",
       };
     const config: WordBuildConfig = { items };
+    return { config: JSON.stringify(config) };
+  }
+
+  if (type === EXERCISE_TYPES.ORATORY) {
+    const items = String(formData.get("items") ?? "")
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const [title, prompt, tip, secs] = line.split("|").map((p) => (p ?? "").trim());
+        const seconds = parseInt(secs ?? "45", 10);
+        return {
+          title: title ?? "",
+          prompt: prompt ?? "",
+          tip: tip ?? "",
+          seconds: Number.isNaN(seconds) ? 45 : Math.max(10, Math.min(180, seconds)),
+        };
+      })
+      .filter((it) => it.title && it.prompt);
+    if (items.length === 0)
+      return {
+        error: "Agrega al menos un reto, en formato: título | consigna | técnica | segundos",
+      };
+    const config: OratoryConfig = { items };
     return { config: JSON.stringify(config) };
   }
 

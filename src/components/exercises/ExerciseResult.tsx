@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { playFinish } from "@/lib/sounds";
 
 function starsForScore(score: number): number {
   if (score >= 80) return 3;
@@ -36,6 +37,11 @@ export default function ExerciseResult({
   const [display, setDisplay] = useState(0);
   const stars = starsForScore(score);
   const msg = messageForScore(score);
+
+  // Sonido de celebración al mostrar el resultado.
+  useEffect(() => {
+    playFinish();
+  }, []);
 
   // Puntaje que sube animado de 0 al valor final.
   useEffect(() => {

@@ -5,6 +5,7 @@ import { submitAttempt } from "@/lib/actions/attempts";
 import type { WordBuildConfig } from "@/lib/exercise-configs";
 import ExerciseResult from "./ExerciseResult";
 import ExerciseProgress from "./ExerciseProgress";
+import { playCorrect, playWrong } from "@/lib/sounds";
 
 type Phase = "intro" | "playing" | "done";
 
@@ -103,8 +104,10 @@ export default function WordBuildRunner({
     if (normalize(attempt) === normalize(current.answer)) {
       setFeedback("correct");
       setSolvedCount((c) => c + 1);
+      playCorrect();
     } else {
       setFeedback("wrong");
+      playWrong();
     }
   }
 

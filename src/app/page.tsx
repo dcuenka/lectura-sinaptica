@@ -39,6 +39,49 @@ const EXERCISES = [
     title: "Léxico (Scrabble)",
     text: "Forma palabras con fichas de letras a partir de una pista para ampliar tu vocabulario, como el juego de mesa.",
   },
+  {
+    emoji: "🎤",
+    title: "Oratoria",
+    text: "Retos de expresión oral con técnicas reconocidas (estructura, pausas, storytelling) para hablar en público con seguridad.",
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    initial: "M",
+    name: "Mateo, 8 años",
+    role: "(contado por su mamá)",
+    text: "Antes le costaba leer en voz alta. Con los ejercicios de destello y el juego de letras ahora lee más rápido y hasta pide practicar. ¡Le encanta ganar estrellas!",
+    color: "bg-amber-100 text-amber-700",
+  },
+  {
+    initial: "V",
+    name: "Valentina, 14 años",
+    role: "Estudiante de secundaria",
+    text: "Subí mi velocidad de lectura para los exámenes y entiendo mejor lo que leo. La rutina diaria me mantiene enganchada y la parte de oratoria me ayudó a exponer sin miedo.",
+    color: "bg-blue-100 text-blue-700",
+  },
+  {
+    initial: "D",
+    name: "Diego, 21 años",
+    role: "Universitario",
+    text: "Con tantas lecturas de la carrera, leer más rápido me ahorra horas. El seguimiento de progreso me motiva a superar mi marca cada semana.",
+    color: "bg-emerald-100 text-emerald-700",
+  },
+  {
+    initial: "C",
+    name: "Carolina, 39 años",
+    role: "Profesional",
+    text: "Lo uso 15 minutos al día antes del trabajo. Mejoré mi comprensión y mi vocabulario, y los ejercicios de oratoria me dieron seguridad para presentar en reuniones.",
+    color: "bg-purple-100 text-purple-700",
+  },
+  {
+    initial: "R",
+    name: "Roberto, 63 años",
+    role: "Jubilado",
+    text: "Quería mantener la mente activa. Es fácil de usar y siento que leo con más agilidad y recuerdo mejor. Volver a entrenar el cerebro a mi edad ha sido una gran experiencia.",
+    color: "bg-rose-100 text-rose-700",
+  },
 ];
 
 export default function Home() {
@@ -140,7 +183,7 @@ export default function Home() {
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-slate-900">
           Tipos de ejercicios
         </h2>
-        <div className="mt-10 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
           {EXERCISES.map((ex) => (
             <div
               key={ex.title}
@@ -151,6 +194,41 @@ export default function Home() {
               <p className="mt-2 text-slate-600 text-sm">{ex.text}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50 border-t border-slate-200">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-slate-900">
+            Historias de éxito a toda edad
+          </h2>
+          <p className="mt-2 text-center text-slate-500">
+            Desde niños hasta adultos mayores, {BRAND.name} entrena mentes de 6 a 65 años.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {TESTIMONIALS.map((t) => (
+              <figure
+                key={t.name}
+                className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col"
+              >
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`flex h-11 w-11 items-center justify-center rounded-full font-bold ${t.color}`}
+                  >
+                    {t.initial}
+                  </span>
+                  <div>
+                    <figcaption className="font-semibold text-slate-900">{t.name}</figcaption>
+                    <div className="text-xs text-slate-500">{t.role}</div>
+                  </div>
+                </div>
+                <div className="mt-3 text-amber-400 text-sm">★★★★★</div>
+                <blockquote className="mt-2 text-slate-600 text-sm leading-relaxed">
+                  “{t.text}”
+                </blockquote>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { summarizeAttempts } from "@/lib/stats";
+import { summarizeAttempts, computeGamification } from "@/lib/stats";
 import {
   AGE_BANDS,
   ageBandForAge,
@@ -47,6 +47,7 @@ export default async function StudentDashboard({
   ]);
 
   const summary = summarizeAttempts(attempts);
+  const game = computeGamification(attempts);
 
   // Agrupar por banda de edad.
   const byBand = new Map<string, ExerciseRow[]>();
@@ -66,6 +67,21 @@ export default async function StudentDashboard({
       <h1 className="text-2xl font-bold text-slate-900">Hola, {session!.user.name}</h1>
       <p className="mt-1 text-slate-500">Elige un ejercicio para practicar hoy.</p>
 
+      <Link
+        href="/dashboard/student/rutina"
+        className="mt-5 flex items-center justify-between rounded-2xl bg-gradient-to-r from-blue-700 to-blue-600 p-5 text-white hover:from-blue-800 hover:to-blue-700 transition"
+      >
+        <div>
+          <div className="font-bold text-lg">🏋️ Rutina de entrenamiento</div>
+          <div className="text-blue-100 text-sm">
+            Una clase dinámica: un ejercicio de cada tipo en una sola sesión.
+          </div>
+        </div>
+        <span className="rounded-md bg-amber-400 px-4 py-2 text-blue-950 font-bold whitespace-nowrap">
+          Empezar →
+        </span>
+      </Link>
+
       <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
         <StatCard label="Intentos totales" value={String(summary.totalAttempts)} />
         <StatCard
@@ -82,6 +98,47 @@ export default async function StudentDashboard({
         >
           Ver mi progreso →
         </Link>
+      </div>
+
+      {/* Gamificación: estrellas, racha e insignias */}
+      <div className="mt-6 rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-white p-5">
+        <div className="flex flex-wrap items-center gap-6">
+          <div className="flex items-center gap-2">
+            <span className="text-3xl">⭐</span>
+            <div>
+              <div className="text-xl font-bold text-slate-900">{game.totalStars}</div>
+              <div className="text-xs text-slate-500">estrellas ganadas</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-3xl">🔥</span>
+            <div>
+              <div className="text-xl font-bold text-slate-900">
+                {game.streak} {game.streak === 1 ? "día" : "días"}
+              </div>
+              <div className="text-xs text-slate-500">racha seguida</div>
+            </div>
+          </div>
+          <div className="flex-1 min-w-[200px]">
+            <div className="text-xs text-slate-500 mb-1">Insignias</div>
+            <div className="flex flex-wrap gap-2">
+              {game.badges.map((b) => (
+                <span
+                  key={b.key}
+                  title={b.label}
+                  className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
+                    b.earned
+                      ? "bg-amber-100 text-amber-800"
+                      : "bg-slate-100 text-slate-300"
+                  }`}
+                >
+                  <span className={b.earned ? "" : "grayscale opacity-50"}>{b.emoji}</span>
+                  {b.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Filtro por edad */}

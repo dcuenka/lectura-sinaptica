@@ -27,3 +27,14 @@ export type WordBuildItem = {
 export type WordBuildConfig = {
   items: WordBuildItem[];
 };
+
+export type OratoryItem = {
+  title: string;
+  prompt: string;
+  tip: string;
+  seconds: number;
+};
+
+export type OratoryConfig = {
+  items: OratoryItem[];
+};
