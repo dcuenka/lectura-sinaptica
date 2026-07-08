@@ -34,6 +34,11 @@ const EXERCISES = [
     title: "Amplitud visual",
     text: "Columnas de palabras que amplían el campo visual y reducen los saltos oculares al leer.",
   },
+  {
+    emoji: "🔤",
+    title: "Léxico (Scrabble)",
+    text: "Forma palabras con fichas de letras a partir de una pista para ampliar tu vocabulario, como el juego de mesa.",
+  },
 ];
 
 export default function Home() {
@@ -42,13 +47,13 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-amber-50 via-white to-white -z-10" />
         <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-14 pb-20 sm:pt-20 sm:pb-28 text-center">
-          <div className="relative mx-auto h-24 w-24 sm:h-28 sm:w-28">
+          <div className="relative mx-auto h-36 w-36 sm:h-44 sm:w-44">
             <span className="logo-halo" aria-hidden="true" />
             <Image
               src={BRAND.logo}
               alt={BRAND.name}
-              width={120}
-              height={120}
+              width={200}
+              height={200}
               priority
               className="logo-hero h-full w-full object-contain"
             />
@@ -135,7 +140,7 @@ export default function Home() {
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-slate-900">
           Tipos de ejercicios
         </h2>
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+        <div className="mt-10 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {EXERCISES.map((ex) => (
             <div
               key={ex.title}
