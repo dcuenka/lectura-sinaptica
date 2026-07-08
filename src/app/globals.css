@@ -17,35 +17,102 @@ body {
   color: var(--foreground);
 }
 
-/* Acercamiento (zoom-in) del logo en la portada */
-@keyframes logo-zoom-in {
+/* --- Entrada dinámica del logo en la portada --- */
+
+/* Gira entrando desde pequeño, se pasa de tamaño y rebota hasta su sitio. */
+@keyframes logo-entrance {
   0% {
-    transform: scale(0.25);
+    transform: scale(0.1) rotate(-220deg);
     opacity: 0;
-    filter: blur(6px);
+    filter: blur(8px);
   }
-  55% {
+  45% {
     opacity: 1;
     filter: blur(0);
+    transform: scale(1.25) rotate(18deg);
+  }
+  62% {
+    transform: scale(0.9) rotate(-10deg);
   }
   78% {
-    transform: scale(1.08);
+    transform: scale(1.08) rotate(5deg);
+  }
+  90% {
+    transform: scale(0.97) rotate(-2deg);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
     opacity: 1;
-    filter: blur(0);
   }
 }
 
-.logo-zoom-in {
-  animation: logo-zoom-in 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Flotación continua (después de entrar). */
+@keyframes logo-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+
+/* Brillo dorado pulsante. */
+@keyframes logo-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(245, 197, 24, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(245, 197, 24, 0.85));
+  }
+}
+
+/* Halo que irradia detrás del logo. */
+@keyframes halo-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.55;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.logo-hero {
   transform-origin: center;
+  /* entrada una vez -> luego flota; el brillo pulsa siempre */
+  animation:
+    logo-entrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    logo-float 3.2s ease-in-out 1.5s infinite,
+    logo-glow 2.4s ease-in-out infinite;
+}
+
+.logo-halo {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(245, 197, 24, 0.55) 0%,
+    rgba(245, 197, 24, 0) 70%
+  );
+  animation: halo-pulse 2.6s ease-out infinite;
+  z-index: -1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo-zoom-in {
+  .logo-hero {
     animation: none;
+  }
+  .logo-halo {
+    animation: none;
+    opacity: 0;
   }
 }
 

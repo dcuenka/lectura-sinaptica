@@ -42,14 +42,17 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-amber-50 via-white to-white -z-10" />
         <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-14 pb-20 sm:pt-20 sm:pb-28 text-center">
-          <Image
-            src={BRAND.logo}
-            alt={BRAND.name}
-            width={120}
-            height={120}
-            priority
-            className="logo-zoom-in mx-auto h-24 w-24 sm:h-28 sm:w-28 object-contain drop-shadow-sm"
-          />
+          <div className="relative mx-auto h-24 w-24 sm:h-28 sm:w-28">
+            <span className="logo-halo" aria-hidden="true" />
+            <Image
+              src={BRAND.logo}
+              alt={BRAND.name}
+              width={120}
+              height={120}
+              priority
+              className="logo-hero h-full w-full object-contain"
+            />
+          </div>
           <span className="mt-6 inline-block rounded-full bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1">
             {BRAND.name} · {BRAND.product}
           </span>
