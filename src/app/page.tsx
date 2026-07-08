@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BRAND } from "@/lib/brand";
 import LetterRain from "@/components/LetterRain";
+import TrustSeal from "@/components/TrustSeal";
 
 const STEPS = [
   {
@@ -124,6 +125,15 @@ export default function Home() {
             >
               Ya tengo cuenta
             </Link>
+          </div>
+
+          {/* Sello de confianza: métodos con base científica */}
+          <div className="mt-12 flex flex-col items-center gap-3">
+            <TrustSeal className="h-28 w-28 sm:h-32 sm:w-32 drop-shadow-sm" />
+            <p className="max-w-md text-sm text-slate-500">
+              Nuestros ejercicios se basan en técnicas de eficacia reconocida en la investigación
+              sobre lectura, memoria y aprendizaje.
+            </p>
           </div>
         </div>
       </section>
