@@ -6,6 +6,11 @@ import type { OratoryConfig } from "@/lib/exercise-configs";
 import ExerciseResult from "./ExerciseResult";
 import ExerciseProgress from "./ExerciseProgress";
 import { playFinish } from "@/lib/sounds";
+import { useSpeechRecognition } from "@/lib/useSpeechRecognition";
+
+function countWords(s: string) {
+  return s.trim().split(/\s+/).filter(Boolean).length;
+}
 
 type Phase = "intro" | "prepare" | "speaking" | "rating" | "done";
 
@@ -24,9 +29,16 @@ export default function OratoryRunner({
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
+  const speech = useSpeechRecognition("es-ES");
 
   const total = config.items.length;
   const current = config.items[index];
+
+  // Detiene el micrófono al salir de la fase de hablar.
+  useEffect(() => {
+    if (phase !== "speaking" && speech.listening) speech.stop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, speech.listening, speech.stop]);
 
   // Cronómetro de la fase "hablando".
   useEffect(() => {
@@ -50,6 +62,8 @@ export default function OratoryRunner({
   }
 
   function beginSpeaking() {
+    speech.reset();
+    if (speech.supported) speech.start();
     setRemaining(current.seconds);
     setPhase("speaking");
   }
@@ -152,6 +166,27 @@ export default function OratoryRunner({
               {remaining}
             </div>
             <p className="mt-3 text-slate-600 font-medium">🎙️ ¡Habla ahora!</p>
+
+            {speech.supported && (
+              <div className="mt-4 rounded-lg bg-slate-50 border border-slate-200 p-3 text-left">
+                <div className="flex items-center gap-2 text-xs text-slate-500">
+                  <span
+                    className={`inline-block h-2 w-2 rounded-full ${
+                      speech.listening ? "bg-red-500 animate-pulse" : "bg-slate-300"
+                    }`}
+                  />
+                  {speech.listening ? "Escuchando tu voz…" : "Micrófono en pausa"}
+                </div>
+                <p className="mt-2 text-sm text-slate-700 min-h-10">
+                  {speech.transcript || (
+                    <span className="text-slate-400">
+                      Aquí aparecerá lo que digas. (Permite el micrófono si el navegador lo pide.)
+                    </span>
+                  )}
+                </p>
+              </div>
+            )}
+
             <button
               onClick={() => setPhase("rating")}
               className="mt-4 rounded-md bg-slate-100 px-4 py-2 text-slate-700 font-medium hover:bg-slate-200 transition"
@@ -163,6 +198,14 @@ export default function OratoryRunner({
 
         {phase === "rating" && (
           <div className="mt-6 text-center">
+            {speech.supported && speech.transcript && (
+              <div className="mb-4 rounded-lg bg-blue-50 border border-blue-200 p-3 text-left text-sm">
+                <div className="font-semibold text-blue-800">
+                  🗣️ Dijiste {countWords(speech.transcript)} palabras
+                </div>
+                <p className="mt-1 text-slate-600 italic">“{speech.transcript}”</p>
+              </div>
+            )}
             <p className="font-medium text-slate-800">¿Cómo lo hiciste?</p>
             <div className="mt-3 flex items-center justify-center gap-2">
               {[1, 2, 3, 4, 5].map((s) => (
