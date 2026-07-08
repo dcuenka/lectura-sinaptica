@@ -48,7 +48,7 @@ export default function Home() {
             width={120}
             height={120}
             priority
-            className="mx-auto h-24 w-24 sm:h-28 sm:w-28 object-contain drop-shadow-sm"
+            className="logo-zoom-in mx-auto h-24 w-24 sm:h-28 sm:w-28 object-contain drop-shadow-sm"
           />
           <span className="mt-6 inline-block rounded-full bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1">
             {BRAND.name} · {BRAND.product}

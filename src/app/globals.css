@@ -17,6 +17,38 @@ body {
   color: var(--foreground);
 }
 
+/* Acercamiento (zoom-in) del logo en la portada */
+@keyframes logo-zoom-in {
+  0% {
+    transform: scale(0.25);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  78% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.logo-zoom-in {
+  animation: logo-zoom-in 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-zoom-in {
+    animation: none;
+  }
+}
+
 /* Lluvia de letras (sección del niño en la portada) */
 @keyframes letter-fall {
   0% {
