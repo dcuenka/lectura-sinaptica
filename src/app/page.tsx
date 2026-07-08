@@ -85,6 +85,34 @@ const TESTIMONIALS = [
   },
 ];
 
+const SCIENCE = [
+  {
+    emoji: "⚡",
+    title: "Taquistoscopio",
+    text: "Al mostrar palabras por milisegundos, el ojo aprende a reconocer más texto en cada fijación y se reduce la subvocalización. La investigación sobre movimientos oculares muestra que menos fijaciones = lectura más veloz.",
+  },
+  {
+    emoji: "⏱️",
+    title: "Lectura cronometrada",
+    text: "Medir tu velocidad (ppm) y comprensión y volver a intentarlo es práctica deliberada: repetir con un objetivo claro y retroalimentación es lo que, según la ciencia del aprendizaje, más mejora el desempeño.",
+  },
+  {
+    emoji: "👁️",
+    title: "Amplitud visual",
+    text: "Entrenar la visión periférica amplía el «campo de reconocimiento» y disminuye la cantidad de pausas por línea, uno de los factores que más limitan la velocidad de lectura.",
+  },
+  {
+    emoji: "🔤",
+    title: "Léxico (Scrabble)",
+    text: "Un vocabulario amplio predice mejor comprensión lectora. Recuperar la palabra de forma activa (active recall) fija el término en la memoria mucho más que solo leerlo.",
+  },
+  {
+    emoji: "🎤",
+    title: "Oratoria",
+    text: "Se apoya en técnicas retóricas reconocidas: estructura (PREP), la regla de tres, el storytelling y el equilibrio ethos–logos–pathos, practicadas con autoevaluación para mejorar con cada intento.",
+  },
+];
+
 export default function Home() {
   return (
     <div>
@@ -204,6 +232,47 @@ export default function Home() {
               <p className="mt-2 text-slate-600 text-sm">{ex.text}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-white border-y border-slate-200">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16">
+          <div className="text-center">
+            <span className="inline-block rounded-full bg-blue-100 text-blue-700 text-sm font-semibold px-4 py-1">
+              Métodos con base científica
+            </span>
+            <h2 className="mt-4 text-2xl sm:text-3xl font-bold text-slate-900">
+              ¿Por qué funciona?
+            </h2>
+            <p className="mt-2 text-slate-500 max-w-2xl mx-auto">
+              Cada ejercicio aplica principios reconocidos en la investigación sobre lectura,
+              memoria y aprendizaje. Esto es lo que entrena cada uno:
+            </p>
+          </div>
+
+          <div className="mt-10 space-y-4">
+            {SCIENCE.map((s) => (
+              <div
+                key={s.title}
+                className="flex gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5"
+              >
+                <div className="text-3xl shrink-0">{s.emoji}</div>
+                <div>
+                  <h3 className="font-semibold text-slate-900">{s.title}</h3>
+                  <p className="mt-1 text-slate-600 text-sm leading-relaxed">{s.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-xl bg-amber-50 border border-amber-200 p-5 text-center">
+            <p className="text-sm text-amber-800">
+              Además, toda la plataforma usa <strong>retroalimentación inmediata</strong>,{" "}
+              <strong>repetición espaciada</strong> (práctica diaria) y{" "}
+              <strong>gamificación</strong> (estrellas, rachas e insignias) porque la motivación
+              sostenida es clave para que el entrenamiento dé resultados.
+            </p>
+          </div>
         </div>
       </section>
 
