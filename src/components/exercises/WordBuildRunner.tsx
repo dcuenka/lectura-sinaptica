@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { submitAttempt } from "@/lib/actions/attempts";
 import type { WordBuildConfig } from "@/lib/exercise-configs";
 import ExerciseResult from "./ExerciseResult";
+import ExerciseProgress from "./ExerciseProgress";
 
 type Phase = "intro" | "playing" | "done";
 
@@ -164,9 +165,11 @@ export default function WordBuildRunner({
 
   return (
     <div className="max-w-lg mx-auto">
-      <p className="text-sm text-slate-400 text-center mb-4">
-        Palabra {index + 1} de {total} · {solvedCount} acertadas
-      </p>
+      <ExerciseProgress
+        current={index}
+        total={total}
+        label={`Palabra ${index + 1} de ${total} · ${solvedCount} acertadas`}
+      />
 
       <div className="rounded-xl border border-slate-200 bg-white p-6">
         <p className="text-sm text-slate-500">Pista</p>

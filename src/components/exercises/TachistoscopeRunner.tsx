@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { submitAttempt } from "@/lib/actions/attempts";
 import type { TachistoscopeConfig } from "@/lib/exercise-configs";
 import ExerciseResult from "./ExerciseResult";
+import ExerciseProgress from "./ExerciseProgress";
 
 type Phase = "intro" | "countdown" | "flash" | "answer" | "done";
 
@@ -106,9 +107,11 @@ export default function TachistoscopeRunner({
 
   return (
     <div className="max-w-md mx-auto text-center">
-      <p className="text-sm text-slate-400 mb-4">
-        {index + 1} de {total}
-      </p>
+      <ExerciseProgress
+        current={index}
+        total={total}
+        label={`Palabra ${index + 1} de ${total}`}
+      />
 
       <div className="h-40 flex items-center justify-center rounded-xl border border-slate-200 bg-white">
         {phase === "countdown" && <span className="text-slate-400">Prepárate...</span>}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { submitAttempt } from "@/lib/actions/attempts";
 import type { VisualSpanConfig } from "@/lib/exercise-configs";
 import ExerciseResult from "./ExerciseResult";
+import ExerciseProgress from "./ExerciseProgress";
 
 type Phase = "intro" | "countdown" | "flash" | "answer" | "done";
 
@@ -110,9 +111,11 @@ export default function VisualSpanRunner({
 
   return (
     <div className="max-w-lg mx-auto text-center">
-      <p className="text-sm text-slate-400 mb-4">
-        Fila {rowIndex + 1} de {totalRows}
-      </p>
+      <ExerciseProgress
+        current={rowIndex}
+        total={totalRows}
+        label={`Fila ${rowIndex + 1} de ${totalRows}`}
+      />
 
       <div className="h-32 flex items-center justify-center gap-4 rounded-xl border border-slate-200 bg-white px-4">
         {phase === "countdown" && <span className="text-slate-400">Prepárate...</span>}
