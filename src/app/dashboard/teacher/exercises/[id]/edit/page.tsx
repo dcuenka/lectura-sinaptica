@@ -26,6 +26,8 @@ export default async function EditExercisePage({
     type: exercise.type as ExerciseType,
     title: exercise.title,
     level: exercise.level,
+    ageMin: exercise.ageMin,
+    ageMax: exercise.ageMax,
     config: JSON.parse(exercise.config),
   };
 

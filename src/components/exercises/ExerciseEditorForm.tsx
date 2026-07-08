@@ -16,6 +16,7 @@ import type {
   TachistoscopeConfig,
   TimedReadingConfig,
   VisualSpanConfig,
+  WordBuildConfig,
 } from "@/lib/exercise-configs";
 
 type EditableQuestion = {
@@ -29,7 +30,9 @@ export type ExerciseInitial = {
   type: ExerciseType;
   title: string;
   level: number;
-  config: TachistoscopeConfig | TimedReadingConfig | VisualSpanConfig;
+  ageMin: number;
+  ageMax: number;
+  config: TachistoscopeConfig | TimedReadingConfig | VisualSpanConfig | WordBuildConfig;
 };
 
 const initialState: FormState = undefined;
@@ -85,6 +88,9 @@ export default function ExerciseEditorForm({
   const rConfig = initial?.type === EXERCISE_TYPES.TIMED_READING
     ? (initial.config as TimedReadingConfig)
     : null;
+  const wConfig = initial?.type === EXERCISE_TYPES.WORD_BUILD
+    ? (initial.config as WordBuildConfig)
+    : null;
 
   return (
     <form action={formAction} className="space-y-6">
@@ -100,7 +106,7 @@ export default function ExerciseEditorForm({
           <label className="block text-sm font-medium text-slate-700 mb-2">
             Tipo de ejercicio
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {Object.values(EXERCISE_TYPES).map((t) => (
               <button
                 key={t}
@@ -119,26 +125,49 @@ export default function ExerciseEditorForm({
         </div>
       )}
 
-      <div className="grid sm:grid-cols-[1fr_auto] gap-4">
+      <div>
+        <label className="block text-sm font-medium text-slate-700 mb-1">Título</label>
+        <input
+          name="title"
+          required
+          defaultValue={initial?.title}
+          placeholder="Ej: Palabras cortas nivel 1"
+          className={inputClass}
+        />
+      </div>
+
+      <div className="grid grid-cols-3 gap-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Título</label>
-          <input
-            name="title"
-            required
-            defaultValue={initial?.title}
-            placeholder="Ej: Palabras cortas nivel 1"
-            className={inputClass}
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Nivel</label>
+          <label className="block text-sm font-medium text-slate-700 mb-1">Nivel (1-18)</label>
           <input
             name="level"
             type="number"
             min={1}
-            max={10}
+            max={18}
             defaultValue={initial?.level ?? 1}
-            className={`${inputClass} w-24`}
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-slate-700 mb-1">Edad mín.</label>
+          <input
+            name="ageMin"
+            type="number"
+            min={6}
+            max={65}
+            defaultValue={initial?.ageMin ?? 6}
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-slate-700 mb-1">Edad máx.</label>
+          <input
+            name="ageMax"
+            type="number"
+            min={6}
+            max={65}
+            defaultValue={initial?.ageMax ?? 65}
+            className={inputClass}
           />
         </div>
       </div>
@@ -206,6 +235,30 @@ export default function ExerciseEditorForm({
               placeholder={"sol luna\ncasa árbol perro\nrojo verde azul"}
               className={inputClass}
             />
+          </div>
+        </div>
+      )}
+
+      {/* WORD BUILD (léxico) fields */}
+      {type === EXERCISE_TYPES.WORD_BUILD && (
+        <div className="space-y-4 rounded-lg border border-slate-200 p-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">
+              Palabras y pistas (una por línea, formato: palabra | pista)
+            </label>
+            <textarea
+              name="items"
+              rows={6}
+              required
+              defaultValue={wConfig?.items
+                .map((it) => `${it.answer} | ${it.hint}`)
+                .join("\n")}
+              placeholder={"gato | Mascota que dice miau\nescuela | Lugar donde aprendes"}
+              className={inputClass}
+            />
+            <p className="mt-1 text-xs text-slate-500">
+              El alumno verá la pista y las letras desordenadas para formar la palabra.
+            </p>
           </div>
         </div>
       )}

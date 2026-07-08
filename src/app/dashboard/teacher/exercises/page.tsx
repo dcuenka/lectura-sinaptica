@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { EXERCISE_TYPE_LABELS, type ExerciseType } from "@/lib/constants";
+import {
+  EXERCISE_TYPE_LABELS,
+  EXERCISE_TYPE_EMOJI,
+  ageLabel,
+  type ExerciseType,
+} from "@/lib/constants";
 import { deleteExercise } from "@/lib/actions/exercises";
-
-const TYPE_EMOJI: Record<ExerciseType, string> = {
-  TACHISTOSCOPE: "⚡",
-  TIMED_READING: "⏱️",
-  VISUAL_SPAN: "👁️",
-};
 
 export default async function TeacherExercisesPage() {
   const session = await auth();
@@ -56,8 +55,9 @@ export default async function TeacherExercisesPage() {
           >
             <div>
               <div className="text-xs font-medium text-blue-600">
-                {TYPE_EMOJI[ex.type as ExerciseType]}{" "}
-                {EXERCISE_TYPE_LABELS[ex.type as ExerciseType]} · Nivel {ex.level}
+                {EXERCISE_TYPE_EMOJI[ex.type as ExerciseType]}{" "}
+                {EXERCISE_TYPE_LABELS[ex.type as ExerciseType]} · Nivel {ex.level} ·{" "}
+                {ageLabel(ex.ageMin, ex.ageMax)}
               </div>
               <div className="mt-1 font-medium text-slate-900">{ex.title}</div>
             </div>
@@ -90,7 +90,8 @@ export default async function TeacherExercisesPage() {
             className="rounded-lg border border-slate-200 bg-slate-50 p-3"
           >
             <div className="text-xs text-slate-500">
-              {TYPE_EMOJI[ex.type as ExerciseType]} Nivel {ex.level}
+              {EXERCISE_TYPE_EMOJI[ex.type as ExerciseType]} Nivel {ex.level} ·{" "}
+              {ageLabel(ex.ageMin, ex.ageMax)}
             </div>
             <div className="text-sm font-medium text-slate-800">{ex.title}</div>
           </div>

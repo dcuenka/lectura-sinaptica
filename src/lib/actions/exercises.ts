@@ -9,15 +9,23 @@ import type {
   TachistoscopeConfig,
   TimedReadingConfig,
   VisualSpanConfig,
+  WordBuildConfig,
 } from "@/lib/exercise-configs";
+import { MIN_AGE, MAX_AGE } from "@/lib/constants";
 
 export type FormState = { error?: string } | undefined;
 
 function parseLevel(raw: FormDataEntryValue | null): number {
   const n = parseInt(String(raw ?? "1"), 10);
   if (Number.isNaN(n) || n < 1) return 1;
-  if (n > 10) return 10;
+  if (n > 18) return 18;
   return n;
+}
+
+function parseAge(raw: FormDataEntryValue | null, fallback: number): number {
+  const n = parseInt(String(raw ?? ""), 10);
+  if (Number.isNaN(n)) return fallback;
+  return Math.max(MIN_AGE, Math.min(MAX_AGE, n));
 }
 
 function buildConfig(type: ExerciseType, formData: FormData): { config: string } | { error: string } {
@@ -44,6 +52,24 @@ function buildConfig(type: ExerciseType, formData: FormData): { config: string }
     if (Number.isNaN(displayMs) || displayMs < 50 || displayMs > 5000)
       return { error: "El tiempo debe estar entre 50 y 5000 ms." };
     const config: VisualSpanConfig = { displayMs, rows };
+    return { config: JSON.stringify(config) };
+  }
+
+  if (type === EXERCISE_TYPES.WORD_BUILD) {
+    const items = String(formData.get("items") ?? "")
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const [answer, ...hintParts] = line.split("|");
+        return { answer: (answer ?? "").trim(), hint: hintParts.join("|").trim() };
+      })
+      .filter((it) => it.answer && it.hint);
+    if (items.length === 0)
+      return {
+        error: "Agrega al menos una palabra con pista, en formato: palabra | pista",
+      };
+    const config: WordBuildConfig = { items };
     return { config: JSON.stringify(config) };
   }
 
@@ -102,6 +128,8 @@ export async function createExercise(
       type,
       title,
       level: parseLevel(formData.get("level")),
+      ageMin: parseAge(formData.get("ageMin"), MIN_AGE),
+      ageMax: parseAge(formData.get("ageMax"), MAX_AGE),
       config: built.config,
       createdById: session.user.id,
     },
@@ -136,6 +164,8 @@ export async function updateExercise(
     data: {
       title,
       level: parseLevel(formData.get("level")),
+      ageMin: parseAge(formData.get("ageMin"), existing.ageMin),
+      ageMax: parseAge(formData.get("ageMax"), existing.ageMax),
       config: built.config,
     },
   });

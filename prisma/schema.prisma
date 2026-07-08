@@ -51,6 +51,8 @@ model Exercise {
   type        String
   title       String
   level       Int      @default(1)
+  ageMin      Int      @default(6)
+  ageMax      Int      @default(65)
   config      String
   createdById String?
   createdAt   DateTime @default(now())

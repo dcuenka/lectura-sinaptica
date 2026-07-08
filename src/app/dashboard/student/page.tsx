@@ -3,23 +3,33 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { summarizeAttempts } from "@/lib/stats";
 import {
+  AGE_BANDS,
+  ageBandForAge,
+  ageLabel,
+  EXERCISE_TYPE_EMOJI,
   EXERCISE_TYPE_LABELS,
   EXERCISE_TYPE_SLUGS,
-  EXERCISE_TYPES,
   type ExerciseType,
 } from "@/lib/constants";
 
-const TYPE_EMOJI: Record<ExerciseType, string> = {
-  TACHISTOSCOPE: "⚡",
-  TIMED_READING: "⏱️",
-  VISUAL_SPAN: "👁️",
+type ExerciseRow = {
+  id: string;
+  type: string;
+  title: string;
+  level: number;
+  ageMin: number;
+  ageMax: number;
 };
 
-export default async function StudentDashboard() {
+export default async function StudentDashboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ edad?: string }>;
+}) {
   const session = await auth();
   const userId = session!.user.id;
+  const { edad } = await searchParams;
 
-  // Teachers of the classes this student is enrolled in.
   const enrollments = await prisma.enrollment.findMany({
     where: { userId },
     include: { classGroup: { select: { teacherId: true } } },
@@ -31,17 +41,25 @@ export default async function StudentDashboard() {
       where: {
         OR: [{ createdById: null }, { createdById: { in: teacherIds } }],
       },
-      orderBy: [{ type: "asc" }, { level: "asc" }],
+      orderBy: [{ level: "asc" }, { type: "asc" }],
     }),
     prisma.attempt.findMany({ where: { userId } }),
   ]);
 
   const summary = summarizeAttempts(attempts);
 
-  const grouped = Object.values(EXERCISE_TYPES).map((type) => ({
-    type,
-    exercises: exercises.filter((e) => e.type === type),
-  }));
+  // Agrupar por banda de edad.
+  const byBand = new Map<string, ExerciseRow[]>();
+  for (const ex of exercises as ExerciseRow[]) {
+    const band = ageBandForAge(ex.ageMin);
+    const list = byBand.get(band.key) ?? [];
+    list.push(ex);
+    byBand.set(band.key, list);
+  }
+
+  const activeBands = AGE_BANDS.filter(
+    (b) => (!edad || edad === b.key) && (byBand.get(b.key)?.length ?? 0) > 0
+  );
 
   return (
     <div className="mx-auto max-w-5xl w-full px-4 sm:px-6 py-10">
@@ -66,31 +84,53 @@ export default async function StudentDashboard() {
         </Link>
       </div>
 
-      <div className="mt-10 space-y-8">
-        {grouped.map(({ type, exercises: list }) => (
-          <div key={type}>
-            <h2 className="font-semibold text-lg text-slate-900">
-              {TYPE_EMOJI[type]} {EXERCISE_TYPE_LABELS[type]}
-            </h2>
-            <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              {list.map((ex) => (
-                <Link
-                  key={ex.id}
-                  href={`/exercises/${EXERCISE_TYPE_SLUGS[type]}/${ex.id}`}
-                  className="rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-400 hover:shadow-sm transition"
-                >
-                  <div className="text-xs font-medium text-blue-600">Nivel {ex.level}</div>
-                  <div className="mt-1 font-medium text-slate-900">{ex.title}</div>
-                </Link>
-              ))}
-              {list.length === 0 && (
-                <p className="text-slate-400 text-sm col-span-3">
-                  Aún no hay ejercicios de este tipo.
-                </p>
-              )}
+      {/* Filtro por edad */}
+      <div className="mt-8 flex flex-wrap gap-2">
+        <FilterChip label="Todas las edades" href="/dashboard/student" active={!edad} />
+        {AGE_BANDS.map((b) => (
+          <FilterChip
+            key={b.key}
+            label={b.label}
+            href={`/dashboard/student?edad=${b.key}`}
+            active={edad === b.key}
+          />
+        ))}
+      </div>
+
+      <div className="mt-8 space-y-10">
+        {activeBands.map((band) => (
+          <div key={band.key}>
+            <h2 className="text-lg font-bold text-slate-900">{band.label}</h2>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {(byBand.get(band.key) ?? []).map((ex) => {
+                const type = ex.type as ExerciseType;
+                return (
+                  <Link
+                    key={ex.id}
+                    href={`/exercises/${EXERCISE_TYPE_SLUGS[type]}/${ex.id}`}
+                    className="rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-400 hover:shadow-sm transition"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-medium text-blue-600">
+                        {EXERCISE_TYPE_EMOJI[type]} {EXERCISE_TYPE_LABELS[type]}
+                      </span>
+                      <span className="text-[11px] text-slate-400">Nivel {ex.level}</span>
+                    </div>
+                    <div className="mt-1 font-medium text-slate-900 text-sm">
+                      {ex.title.split(" · ")[0]}
+                    </div>
+                    <div className="mt-1 text-[11px] text-amber-600">
+                      {ageLabel(ex.ageMin, ex.ageMax)}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         ))}
+        {activeBands.length === 0 && (
+          <p className="text-slate-400 text-sm">No hay ejercicios para este filtro.</p>
+        )}
       </div>
     </div>
   );
@@ -102,5 +142,28 @@ function StatCard({ label, value }: { label: string; value: string }) {
       <div className="text-xs text-slate-500">{label}</div>
       <div className="mt-1 text-xl font-bold text-slate-900">{value}</div>
     </div>
+  );
+}
+
+function FilterChip({
+  label,
+  href,
+  active,
+}: {
+  label: string;
+  href: string;
+  active: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+        active
+          ? "bg-blue-600 text-white"
+          : "bg-white border border-slate-300 text-slate-600 hover:border-blue-400"
+      }`}
+    >
+      {label}
+    </Link>
   );
 }

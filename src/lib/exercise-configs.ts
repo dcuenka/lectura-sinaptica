@@ -18,3 +18,12 @@ export type VisualSpanConfig = {
   displayMs: number;
   rows: string[][];
 };
+
+export type WordBuildItem = {
+  answer: string;
+  hint: string;
+};
+
+export type WordBuildConfig = {
+  items: WordBuildItem[];
+};
