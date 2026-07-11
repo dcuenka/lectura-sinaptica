@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>El Código de la Venta — Psicología, Persuasión y Neuroventas</title>
+<meta name="description" content="El manual definitivo de ventas: psicología, origen, técnicas reales, call center, la curva de la emocionalidad, los cuadrantes de la decisión, la voz y el lenguaje corporal. Con gráficos claros y ejercicios." />
+<style>
+/* ============================================================
+   EL CÓDIGO DE LA VENTA — sistema de diseño
+   ============================================================ */
+:root{
+  --ground:#FBF6EF;
+  --surface:#FFFFFF;
+  --surface-2:#F4ECE1;
+  --ink:#241C33;
+  --ink-soft:#4A4059;
+  --muted:#7A7189;
+  --border:#E7DCCD;
+  --border-strong:#D8C9B4;
+
+  --coral:#F2481E;      /* energía / urgencia */
+  --coral-soft:#FDE7DF;
+  --gold:#E7930A;       /* valor / dinero */
+  --gold-soft:#FBEBCF;
+  --teal:#0C9E8F;       /* ciencia / confianza */
+  --teal-soft:#D6F0EC;
+  --violet:#6B46D6;     /* mente / psicología */
+  --violet-soft:#E7E0FA;
+
+  --shadow:0 1px 2px rgba(36,28,51,.06), 0 8px 28px -12px rgba(36,28,51,.18);
+  --shadow-lg:0 24px 60px -24px rgba(36,28,51,.35);
+
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+
+  --maxw:720px;
+  --wide:1080px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ground:#141019;
+    --surface:#1E1826;
+    --surface-2:#271F31;
+    --ink:#F1E9F6;
+    --ink-soft:#C7BCD3;
+    --muted:#948AA1;
+    --border:#332A40;
+    --border-strong:#453956;
+
+    --coral:#FF6A44;
+    --coral-soft:#3A1D16;
+    --gold:#F4AE37;
+    --gold-soft:#382713;
+    --teal:#2ED0BF;
+    --teal-soft:#0F332E;
+    --violet:#A688FF;
+    --violet-soft:#241A3D;
+
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.6);
+    --shadow-lg:0 30px 70px -28px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="light"]{
+  --ground:#FBF6EF;--surface:#FFFFFF;--surface-2:#F4ECE1;--ink:#241C33;--ink-soft:#4A4059;--muted:#7A7189;--border:#E7DCCD;--border-strong:#D8C9B4;
+  --coral:#F2481E;--coral-soft:#FDE7DF;--gold:#E7930A;--gold-soft:#FBEBCF;--teal:#0C9E8F;--teal-soft:#D6F0EC;--violet:#6B46D6;--violet-soft:#E7E0FA;
+}
+:root[data-theme="dark"]{
+  --ground:#141019;--surface:#1E1826;--surface-2:#271F31;--ink:#F1E9F6;--ink-soft:#C7BCD3;--muted:#948AA1;--border:#332A40;--border-strong:#453956;
+  --coral:#FF6A44;--coral-soft:#3A1D16;--gold:#F4AE37;--gold-soft:#382713;--teal:#2ED0BF;--teal-soft:#0F332E;--violet:#A688FF;--violet-soft:#241A3D;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--serif);font-size:19px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img{max-width:100%}
+svg{display:block;max-width:100%}
+
+/* ---------- estructura ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.wide{max-width:var(--wide);margin:0 auto;padding:0 22px}
+section{padding:clamp(48px,7vw,88px) 0}
+.rule{height:1px;background:var(--border);border:0;margin:0}
+
+/* ---------- tipografía ---------- */
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.12;text-wrap:balance;font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.6vw,42px);margin:0 0 .5em}
+h3{font-size:clamp(21px,2.8vw,27px);margin:2.2em 0 .5em}
+h4{font-size:19px;margin:1.6em 0 .4em}
+p{margin:0 0 1.05em}
+a{color:var(--coral)}
+.eyebrow{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 .9em;display:flex;align-items:center;gap:.6em}
+.eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--coral)}
+.lead{font-size:1.16em;color:var(--ink-soft)}
+.drop::first-letter{font-size:3.4em;line-height:.8;float:left;padding:.06em .12em .02em 0;color:var(--coral);font-weight:800}
+strong{font-weight:800;color:var(--ink)}
+em{color:var(--ink-soft)}
+.kicker-num{font-family:var(--sans);font-variant-numeric:tabular-nums}
+
+/* ---------- portada / hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 88% 8%, var(--gold-soft) 0%, transparent 46%),
+    radial-gradient(110% 90% at 6% 96%, var(--violet-soft) 0%, transparent 48%),
+    var(--surface);
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{max-width:var(--wide);margin:0 auto;padding:clamp(40px,7vw,74px) 22px clamp(52px,8vw,86px);position:relative;z-index:2}
+.hero .badge{
+  display:inline-flex;align-items:center;gap:.55em;font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.04em;
+  color:var(--teal);background:var(--teal-soft);border:1px solid color-mix(in srgb,var(--teal) 30%,transparent);
+  padding:.42em .8em;border-radius:999px;margin-bottom:22px;
+}
+.hero h1{font-size:clamp(40px,9vw,88px);letter-spacing:-.03em;margin:0 0 .18em;line-height:.98}
+.hero h1 .hl{color:var(--coral)}
+.hero .sub{font-size:clamp(18px,2.4vw,24px);color:var(--ink-soft);max-width:30ch;margin:0 0 1.4em}
+.hero .metarow{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--sans);font-size:13.5px;font-weight:600}
+.hero .chip{background:var(--surface-2);border:1px solid var(--border);padding:.5em .85em;border-radius:999px;color:var(--ink-soft)}
+.hero-art{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.9}
+
+/* ---------- índice ---------- */
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:clamp(22px,3vw,34px);margin-top:-38px;position:relative;z-index:3}
+.toc h2{font-size:15px;font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 1.1em}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px 26px;counter-reset:toc}
+.toc li{counter-increment:toc}
+.toc a{display:flex;gap:.8em;align-items:baseline;text-decoration:none;color:var(--ink);padding:.55em 0;border-bottom:1px dashed var(--border)}
+.toc a:hover{color:var(--coral)}
+.toc a::before{content:counter(toc,decimal-leading-zero);font-family:var(--sans);font-size:12.5px;font-weight:700;color:var(--coral);font-variant-numeric:tabular-nums;min-width:2.1em}
+.toc a span{font-family:var(--sans);font-size:15.5px;font-weight:600;line-height:1.3}
+
+/* ---------- chapter head ---------- */
+.chap{scroll-margin-top:24px}
+.chap-head{display:flex;align-items:flex-start;gap:20px;margin-bottom:1.2em}
+.chap-num{font-family:var(--sans);font-weight:800;font-size:14px;letter-spacing:.05em;color:#fff;background:var(--coral);min-width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:var(--shadow)}
+.chap[data-c="violet"] .chap-num,.card[data-c="violet"]{--coral:var(--violet)}
+.tone-violet .chap-num{background:var(--violet)}
+.tone-teal .chap-num{background:var(--teal)}
+.tone-gold .chap-num{background:var(--gold)}
+.tone-coral .chap-num{background:var(--coral)}
+
+/* ---------- componentes ---------- */
+.callout{border-radius:16px;padding:20px 22px;margin:1.6em 0;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow)}
+.callout .tag{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.5em;margin-bottom:.5em}
+.callout p:last-child{margin-bottom:0}
+.callout.key{background:var(--gold-soft);border-color:color-mix(in srgb,var(--gold) 35%,transparent)}
+.callout.key .tag{color:var(--gold)}
+.callout.sci{background:var(--teal-soft);border-color:color-mix(in srgb,var(--teal) 32%,transparent)}
+.callout.sci .tag{color:var(--teal)}
+.callout.warn{background:var(--coral-soft);border-color:color-mix(in srgb,var(--coral) 34%,transparent)}
+.callout.warn .tag{color:var(--coral)}
+
+.exercise{border:2px dashed var(--violet);background:var(--violet-soft);border-radius:16px;padding:22px 24px;margin:1.8em 0}
+.exercise .tag{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);display:flex;align-items:center;gap:.5em;margin-bottom:.5em}
+.exercise h4{margin-top:0;color:var(--ink)}
+.exercise ol,.exercise ul{margin:.4em 0 0;padding-left:1.3em}
+.exercise li{margin:.3em 0}
+
+.pull{font-family:var(--serif);font-size:clamp(23px,3.4vw,32px);line-height:1.25;font-weight:800;color:var(--ink);border-left:5px solid var(--coral);padding:.1em 0 .1em .7em;margin:1.4em 0;text-wrap:balance}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:1.5em 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.card h4{margin:.2em 0 .4em}
+.card .ic{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:800;color:#fff;margin-bottom:12px;font-size:17px}
+.card p{font-size:16px;margin:0}
+.card .mini{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:.6em}
+
+figure{margin:2em 0}
+figure svg{width:100%;height:auto;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+figcaption{font-family:var(--sans);font-size:13.5px;color:var(--muted);text-align:center;margin-top:.9em;line-height:1.5}
+
+.figtext{font-family:var(--sans)}
+.figtext .t-title{font-weight:800}
+.figtext .t-lbl{font-weight:700}
+
+table.data{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:15px;margin:1.4em 0}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.data th,table.data td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+table.data th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+table.data td strong{color:var(--ink)}
+table.data tr:last-child td{border-bottom:0}
+
+ul.clean{list-style:none;padding:0;margin:1.1em 0}
+ul.clean li{padding-left:1.7em;position:relative;margin:.55em 0}
+ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:50%;background:var(--coral)}
+
+.steps{counter-reset:s;margin:1.4em 0;display:grid;gap:12px}
+.step{display:flex;gap:16px;align-items:flex-start;counter-increment:s;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.step::before{content:counter(s);font-family:var(--sans);font-weight:800;color:#fff;background:var(--violet);min-width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:15px}
+.step h4{margin:.1em 0 .25em}
+.step p{margin:0;font-size:16px;color:var(--ink-soft)}
+
+.storyslot{border:2px dashed var(--gold);border-radius:16px;padding:22px 24px;margin:1.4em 0;background:var(--surface)}
+.storyslot .tag{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4em;display:block}
+.storyslot .ph{color:var(--muted);font-style:italic}
+
+/* ---------- barra de tema ---------- */
+.topbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--ground) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--wide);margin:0 auto;padding:9px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brandmark{font-family:var(--sans);font-weight:800;font-size:14px;letter-spacing:.02em;display:flex;align-items:center;gap:.55em}
+.brandmark .sq{width:20px;height:20px;border-radius:6px;background:var(--coral);display:inline-block}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--coral);transition:width .1s linear}
+.themebtn{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink-soft);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.4em .9em;cursor:pointer}
+.themebtn:hover{border-color:var(--coral);color:var(--coral)}
+.themebtn:focus-visible,a:focus-visible,.toc a:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:6px}
+
+/* ---------- footer ---------- */
+.foot{background:var(--surface);border-top:1px solid var(--border);padding:52px 0}
+.foot .wrap{text-align:center}
+.foot .brandmark{justify-content:center;margin-bottom:1em}
+.foot p{font-family:var(--sans);font-size:14px;color:var(--muted)}
+
+.credit-science{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:.4em}
+@media (max-width:560px){
+  body{font-size:18px}
+  .chap-head{gap:14px}
+  .chap-num{min-width:46px;height:46px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== BARRA SUPERIOR ===================== -->
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brandmark"><span class="sq"></span> El Código de la Venta</div>
+    <button class="themebtn" id="themebtn" type="button" aria-label="Cambiar tema">Tema</button>
+  </div>
+  <div class="progress" id="progress"></div>
+</div>
+
+<!-- ===================== PORTADA ===================== -->
+<header class="hero">
+  <svg class="hero-art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="var(--coral)" stop-opacity=".5"/>
+        <stop offset="1" stop-color="var(--gold)" stop-opacity=".2"/>
+      </linearGradient>
+    </defs>
+    <path d="M-20 470 C 200 470 260 360 430 360 S 700 250 820 250 1010 150 1220 150" fill="none" stroke="url(#hg)" stroke-width="3" opacity=".8"/>
+    <path d="M-20 520 C 220 520 300 430 470 430 S 760 340 900 340 1080 250 1220 250" fill="none" stroke="var(--violet)" stroke-width="2" opacity=".28"/>
+    <circle cx="820" cy="250" r="7" fill="var(--coral)"/>
+    <circle cx="430" cy="360" r="5" fill="var(--gold)"/>
+    <circle cx="900" cy="340" r="5" fill="var(--violet)"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="badge">◆ Métodos con base científica · Psicología · Neuroventas</span>
+    <h1>El Código<br>de la <span class="hl">Venta</span></h1>
+    <p class="sub">Todo el conocimiento para convertir a cualquier persona en un experto en ventas, persuasión y neuroventas.</p>
+    <div class="metarow">
+      <span class="chip">🧠 Psicología del comprador</span>
+      <span class="chip">📞 Ventas por call center</span>
+      <span class="chip">📈 La curva de la emocionalidad</span>
+      <span class="chip">🎙️ Voz y lenguaje corporal</span>
+      <span class="chip">✏️ Ejercicios prácticos</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== ÍNDICE ===================== -->
+<div class="wide">
+  <nav class="toc" aria-label="Índice">
+    <h2>Índice — el mapa completo</h2>
+    <ol>
+      <li><a href="#c1"><span>Por qué las ventas lo mueven todo</span></a></li>
+      <li><a href="#c2"><span>El origen: de la caverna al clic</span></a></li>
+      <li><a href="#c3"><span>Psicología del comprador</span></a></li>
+      <li><a href="#c4"><span>Neuroventas: los tres cerebros</span></a></li>
+      <li><a href="#c5"><span>Los 7 principios de la persuasión</span></a></li>
+      <li><a href="#c6"><span>La curva de la emocionalidad</span></a></li>
+      <li><a href="#c7"><span>Los cuadrantes de la venta</span></a></li>
+      <li><a href="#c8"><span>La voz: tu instrumento invisible</span></a></li>
+      <li><a href="#c9"><span>El lenguaje corporal</span></a></li>
+      <li><a href="#c10"><span>Ventas por call center</span></a></li>
+      <li><a href="#c11"><span>Metodologías: AIDA, SPIN y más</span></a></li>
+      <li><a href="#c12"><span>Objeciones y cierres</span></a></li>
+      <li><a href="#c13"><span>Historias reales desde la trinchera</span></a></li>
+      <li><a href="#c14"><span>Tu ruta para volverte experto</span></a></li>
+    </ol>
+  </nav>
+</div>
+
+<main>
+
+<!-- ===================== CAP 1 ===================== -->
+<section id="c1" class="chap tone-coral">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">01</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> Fundamentos</p>
+        <h2>Por qué las ventas lo mueven todo</h2>
+      </div>
+    </div>
+    <p class="lead">Antes de vender un producto, aprende esta verdad: <strong>todos vendemos, todo el tiempo</strong>. Vender no es engañar; es el arte de mover a otra persona hacia una decisión que le conviene, con claridad, emoción y honestidad.</p>
+    <p class="drop">El médico que convence a un paciente de cambiar de hábitos está vendiendo salud. El niño que negocia una hora más de juego está vendiendo. El emprendedor que busca inversión, el candidato en una entrevista, la persona que pide una cita: todos ejercen la venta. Por eso dominarla no es una habilidad más entre muchas, es <strong>la habilidad que multiplica a todas las demás</strong>. Puedes tener el mejor producto del mundo, pero si no sabes comunicarlo, no existe.</p>
+    <p>Este libro parte de una premisa: la venta profesional se puede aprender, medir y perfeccionar. No es un don misterioso reservado a los extrovertidos. Detrás de cada gran vendedor hay <strong>principios psicológicos concretos</strong>, patrones de conducta humana que se repiten y técnicas que puedes ensayar hasta que se vuelvan naturales.</p>
+
+    <div class="pull">Vender es transferir emoción y certeza de una persona a otra.</div>
+
+    <h3>Las tres capas de toda venta</h3>
+    <div class="grid2">
+      <div class="card"><div class="ic" style="background:var(--violet)">1</div><h4>La persona</h4><p>La gente le compra a quien confía. La relación y la credibilidad valen más que la ficha técnica.</p></div>
+      <div class="card"><div class="ic" style="background:var(--coral)">2</div><h4>La emoción</h4><p>Decidimos con la emoción y justificamos con la razón. Sin emoción no hay compra, solo comparación.</p></div>
+      <div class="card"><div class="ic" style="background:var(--gold)">3</div><h4>El producto</h4><p>Importa, pero mucho menos de lo que crees. Es la prueba lógica que sostiene una decisión ya emocional.</p></div>
+    </div>
+
+    <div class="callout key"><span class="tag">◆ Idea clave</span><p>La mayoría de los vendedores mediocres se obsesionan con la tercera capa (el producto) e ignoran las dos primeras. Los expertos invierten el orden: primero conectan con <strong>la persona</strong>, activan <strong>la emoción</strong>, y solo entonces presentan el <strong>producto</strong> como el camino natural.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 1 — El inventario del vendedor invisible</span>
+      <h4>Descubre cuánto vendes ya sin darte cuenta</h4>
+      <ol>
+        <li>Anota <strong>cinco momentos de la última semana</strong> en los que convenciste a alguien de algo (un plan, una idea, un lugar para comer).</li>
+        <li>Para cada uno, escribe: ¿usaste datos o emoción? ¿La relación ayudó?</li>
+        <li>Marca cuál funcionó mejor y por qué. Guarda esta hoja: la releerás al final del libro.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 2 ===================== -->
+<section id="c2" class="chap tone-gold">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">02</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> Historia y evolución</p>
+        <h2>El origen: de la caverna al clic</h2>
+      </div>
+    </div>
+    <p class="lead">Vender es tan antiguo como el lenguaje. Entender su evolución te da algo que casi ningún vendedor tiene: <strong>perspectiva</strong>. Verás que las técnicas cambian, pero la mente humana que decide es la misma de hace 40.000 años.</p>
+  </div>
+
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 1080 300" role="img" aria-labelledby="tl-t">
+        <title id="tl-t">Línea del tiempo de la evolución de las ventas</title>
+        <line x1="60" y1="150" x2="1020" y2="150" stroke="var(--border-strong)" stroke-width="3"/>
+        <!-- puntos -->
+        <g class="figtext" font-size="13" text-anchor="middle">
+          <!-- 1 -->
+          <circle cx="120" cy="150" r="10" fill="var(--gold)"/>
+          <text x="120" y="112" class="t-lbl" fill="var(--ink)">Trueque</text>
+          <text x="120" y="188" fill="var(--muted)">Intercambio directo</text>
+          <!-- 2 -->
+          <circle cx="300" cy="150" r="10" fill="var(--coral)"/>
+          <text x="300" y="112" class="t-lbl" fill="var(--ink)">El mercado</text>
+          <text x="300" y="188" fill="var(--muted)">Moneda y regateo</text>
+          <!-- 3 -->
+          <circle cx="480" cy="150" r="10" fill="var(--violet)"/>
+          <text x="480" y="112" class="t-lbl" fill="var(--ink)">Era industrial</text>
+          <text x="480" y="188" fill="var(--muted)">Vendedor viajero</text>
+          <!-- 4 -->
+          <circle cx="660" cy="150" r="10" fill="var(--teal)"/>
+          <text x="660" y="112" class="t-lbl" fill="var(--ink)">Mercadotecnia</text>
+          <text x="660" y="188" fill="var(--muted)">Marca y publicidad</text>
+          <!-- 5 -->
+          <circle cx="840" cy="150" r="10" fill="var(--gold)"/>
+          <text x="840" y="112" class="t-lbl" fill="var(--ink)">Call center</text>
+          <text x="840" y="188" fill="var(--muted)">La voz a distancia</text>
+          <!-- 6 -->
+          <circle cx="1000" cy="150" r="11" fill="var(--coral)"/>
+          <text x="1000" y="112" class="t-lbl" fill="var(--ink)">Neuroventas</text>
+          <text x="1000" y="188" fill="var(--muted)">Datos + cerebro</text>
+        </g>
+      </svg>
+      <figcaption>De intercambiar una cabra por trigo a leer el cerebro del comprador: seis mil años, una misma naturaleza humana.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <h3>Las eras del vendedor</h3>
+    <p><strong>El trueque.</strong> Sin dinero, la venta era pura persuasión: convencer de que tu cabra valía más que el trigo del otro. Ahí nace la primera técnica de la historia: <em>demostrar valor comparado</em>.</p>
+    <p><strong>El mercado y la moneda.</strong> Con el dinero aparece el precio, y con el precio, el regateo: la primera negociación estructurada. El vendedor aprende a anclar (pedir alto para ceder), a crear escasez ("es la última pieza") y a leer la cara del comprador.</p>
+    <p><strong>La era industrial.</strong> La producción en masa creó excedente. Por primera vez había <em>más oferta que demanda</em>, y el vendedor viajero tuvo que salir a buscar al cliente. Nace la venta como profesión, con guiones, rutas y comisiones.</p>
+    <p><strong>La mercadotecnia.</strong> A mediados del siglo XX se entiende que el deseo se puede fabricar. La publicidad ya no vende productos, vende <em>identidades</em>: no compras un auto, compras estatus; no compras pasta de dientes, compras confianza al sonreír.</p>
+    <p><strong>El call center.</strong> El teléfono elimina la distancia y el rostro. El vendedor pierde el lenguaje corporal y descubre que la <strong>voz</strong> puede cargar el 100% de la emoción. Se profesionalizan los guiones, el manejo de objeciones y las métricas.</p>
+    <p><strong>Las neuroventas.</strong> Hoy la neurociencia y los datos nos dejan ver <em>por qué</em> compramos: qué activa el deseo, qué dispara el miedo a perder, qué hace que un cerebro diga sí. Es el tema central de este libro.</p>
+
+    <div class="callout sci"><span class="tag">🔬 Base científica</span><p>El disparador de compra no ha cambiado con la tecnología. El cerebro que decidía frente a una fogata es el mismo que hoy decide frente a una pantalla. Por eso quien entiende la mente humana <strong>vende en cualquier época y cualquier canal</strong>.</p></div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 3 ===================== -->
+<section id="c3" class="chap tone-violet">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">03</div>
+      <div>
+        <p class="eyebrow"><span class="dot" style="background:var(--violet)"></span> Psicología</p>
+        <h2>Psicología del comprador</h2>
+      </div>
+    </div>
+    <p class="lead">Para vender hay que entender cómo decide un ser humano. Y la respuesta científica incomoda a muchos: <strong>casi nunca decidimos con la razón</strong>. Decidimos con el sistema emocional y luego construimos una historia lógica que nos deje tranquilos.</p>
+
+    <h3>Los dos sistemas de la mente</h3>
+    <p>El psicólogo Daniel Kahneman describió dos formas de pensar que conviven en cada cliente:</p>
+    <div class="grid2">
+      <div class="card"><div class="ic" style="background:var(--coral)">⚡</div><h4>Sistema 1 — rápido</h4><p>Automático, emocional, intuitivo. Decide en milisegundos, sin esfuerzo. <strong>Aquí se compra.</strong></p><p class="mini">Reacciona a caras, tono de voz, colores, historias, miedo y deseo.</p></div>
+      <div class="card"><div class="ic" style="background:var(--teal)">🧮</div><h4>Sistema 2 — lento</h4><p>Analítico, racional, perezoso. Compara precios y datos. <strong>Aquí se justifica.</strong></p><p class="mini">Se activa poco y se cansa rápido: por eso el exceso de datos paraliza la venta.</p></div>
+    </div>
+    <p>El error del vendedor promedio es hablarle todo el tiempo al Sistema 2 (fichas técnicas, comparativas, tablas). El experto le habla primero al Sistema 1 —con emoción, imágenes e historias— y solo entrega datos al final, como <em>munición para justificar</em> una decisión ya tomada.</p>
+
+    <h3>Los sesgos que juegan a tu favor</h3>
+    <table class="data">
+      <thead><tr><th>Sesgo</th><th>Qué hace en la mente</th><th>Cómo se usa al vender</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Aversión a la pérdida</strong></td><td>Perder duele el doble de lo que agrada ganar.</td><td>"No pierdas esta oportunidad" pesa más que "gana esto".</td></tr>
+        <tr><td><strong>Prueba social</strong></td><td>Hacemos lo que hacen los demás.</td><td>"Más de 10.000 clientes ya lo eligieron."</td></tr>
+        <tr><td><strong>Anclaje</strong></td><td>El primer número marca la referencia.</td><td>Mostrar el precio alto primero hace ver barato el real.</td></tr>
+        <tr><td><strong>Escasez</strong></td><td>Lo escaso se percibe más valioso.</td><td>"Quedan 3 lugares", "solo hoy".</td></tr>
+        <tr><td><strong>Efecto señuelo</strong></td><td>Una opción "trampa" empuja hacia otra.</td><td>Tres planes donde el del medio parece el más listo.</td></tr>
+        <tr><td><strong>Compromiso y coherencia</strong></td><td>Queremos ser fieles a lo que ya dijimos.</td><td>Consigue pequeños "sí" antes del "sí" grande.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn"><span class="tag">⚠ Ética antes que técnica</span><p>Estos sesgos son cuchillos: sirven para cocinar o para herir. Un profesional los usa para <strong>ayudar a decidir a quien de verdad se beneficia</strong> del producto. Manipular a quien no lo necesita destruye la confianza —tu único activo real— y siempre se paga caro.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 2 — Cazador de sesgos</span>
+      <h4>Entrena el ojo psicológico</h4>
+      <ul>
+        <li>Durante <strong>un día</strong>, fotografía o anota cada anuncio, vitrina o mensaje que te intente vender algo.</li>
+        <li>Identifica qué sesgo de la tabla está usando cada uno.</li>
+        <li>Escribe cómo lo mejorarías. Verás publicidad con otros ojos para siempre.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 4 ===================== -->
+<section id="c4" class="chap tone-teal">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">04</div>
+      <div>
+        <p class="eyebrow"><span class="dot" style="background:var(--teal)"></span> Neuroventas</p>
+        <h2>Neuroventas: los tres cerebros</h2>
+      </div>
+    </div>
+    <p class="lead">Las neuroventas aplican la neurociencia a la venta. Su modelo más útil y didáctico es el del <strong>cerebro triuno</strong>: no tenemos un cerebro, tenemos tres, apilados por la evolución, y cada uno decide distinto.</p>
+  </div>
+
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 1080 440" role="img" aria-labelledby="brain-t">
+        <title id="brain-t">Los tres cerebros y su papel en la decisión de compra</title>
+        <!-- capas concéntricas -->
+        <g transform="translate(300,220)">
+          <circle r="170" fill="var(--teal-soft)" stroke="var(--teal)" stroke-width="2"/>
+          <circle r="118" fill="var(--violet-soft)" stroke="var(--violet)" stroke-width="2"/>
+          <circle r="60" fill="var(--coral-soft)" stroke="var(--coral)" stroke-width="2"/>
+          <text text-anchor="middle" class="figtext" font-size="15" font-weight="800" fill="var(--coral)" y="-2">Reptil</text>
+          <text text-anchor="middle" class="figtext" font-size="12" fill="var(--coral)" y="16">decide</text>
+          <text text-anchor="middle" class="figtext" font-size="14" font-weight="800" fill="var(--violet)" y="-92">Límbico</text>
+          <text text-anchor="middle" class="figtext" font-size="14" font-weight="800" fill="var(--teal)" y="-146">Neocórtex</text>
+        </g>
+        <!-- descripciones -->
+        <g class="figtext" font-size="15" fill="var(--ink)">
+          <g transform="translate(560,70)">
+            <rect x="0" y="-24" width="14" height="14" rx="4" fill="var(--teal)"/>
+            <text x="26" y="-12" font-weight="800">Neocórtex — el racional</text>
+            <text x="26" y="12" font-size="14" fill="var(--ink-soft)">Lógica, lenguaje, análisis. Justifica</text>
+            <text x="26" y="32" font-size="14" fill="var(--ink-soft)">la compra, pero no la origina.</text>
+          </g>
+          <g transform="translate(560,180)">
+            <rect x="0" y="-24" width="14" height="14" rx="4" fill="var(--violet)"/>
+            <text x="26" y="-12" font-weight="800">Límbico — el emocional</text>
+            <text x="26" y="12" font-size="14" fill="var(--ink-soft)">Emociones, memoria, vínculos.</text>
+            <text x="26" y="32" font-size="14" fill="var(--ink-soft)">Aquí se enciende el deseo.</text>
+          </g>
+          <g transform="translate(560,290)">
+            <rect x="0" y="-24" width="14" height="14" rx="4" fill="var(--coral)"/>
+            <text x="26" y="-12" font-weight="800">Reptiliano — el instintivo</text>
+            <text x="26" y="12" font-size="14" fill="var(--ink-soft)">Supervivencia, control, placer,</text>
+            <text x="26" y="32" font-size="14" fill="var(--ink-soft)">miedo. <tspan font-weight="800" fill="var(--coral)">Este es el que aprieta el botón.</tspan></text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>Modelo del cerebro triuno (MacLean). En neuroventas: se conecta con el emocional, se convence al racional, pero <strong>siempre se le vende al reptiliano</strong>.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <h3>Véndele a la parte que decide</h3>
+    <p>El cerebro reptiliano no entiende de discursos. Entiende de instintos primarios: <strong>seguridad, control, pertenencia, placer, poder, ahorro de energía, reconocimiento y trascendencia</strong>. Toda compra, por sofisticada que parezca, satisface uno de estos códigos.</p>
+    <div class="grid2">
+      <div class="card"><h4>No vendes un auto</h4><p>Vendes <strong>estatus y control</strong>. El reptil compra el reconocimiento de los demás y la sensación de dominio.</p></div>
+      <div class="card"><h4>No vendes un seguro</h4><p>Vendes <strong>seguridad y tranquilidad</strong>. El reptil compra dejar de sentir miedo por su familia.</p></div>
+      <div class="card"><h4>No vendes un curso</h4><p>Vendes <strong>un futuro yo superior</strong>. El reptil compra pertenencia, poder y trascendencia.</p></div>
+      <div class="card"><h4>No vendes una casa</h4><p>Vendes <strong>refugio y territorio</strong>. El reptil compra proteger a los suyos y echar raíces.</p></div>
+    </div>
+
+    <div class="callout key"><span class="tag">◆ La fórmula de la neuroventa</span><p>Habla a los tres cerebros en orden: <strong>emoción</strong> para el límbico (una historia que conmueva), <strong>datos</strong> para el neocórtex (que le permita justificarse) y <strong>un código reptil</strong> para el que decide (miedo, control, placer o pertenencia). Quien solo da datos, le habla al cerebro que no compra.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 3 — Traduce al reptil</span>
+      <h4>De características a códigos primarios</h4>
+      <ol>
+        <li>Toma tu producto (o uno cualquiera) y lista <strong>3 características</strong> técnicas.</li>
+        <li>Traduce cada una a un beneficio emocional (límbico).</li>
+        <li>Ahora tradúcelo a un <strong>código reptil</strong>: ¿le da seguridad, control, placer, poder o pertenencia? Esa es tu frase de venta.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 5 ===================== -->
+<section id="c5" class="chap tone-coral">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">05</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> Persuasión</p>
+        <h2>Los 7 principios de la persuasión</h2>
+      </div>
+    </div>
+    <p class="lead">Robert Cialdini estudió durante décadas qué hace que la gente diga "sí". Encontró <strong>siete atajos mentales universales</strong>. No son trucos: son las leyes de la influencia. Domínalos y podrás construir una venta honesta y poderosa.</p>
+
+    <div class="grid2">
+      <div class="card"><div class="ic" style="background:var(--teal)">1</div><h4>Reciprocidad</h4><p>Damos a quien nos da. Ofrece valor primero —una asesoría, una muestra, una idea— y crearás la necesidad de devolver.</p><p class="mini">Ejemplo: la degustación gratis que dispara la compra.</p></div>
+      <div class="card"><div class="ic" style="background:var(--violet)">2</div><h4>Compromiso y coherencia</h4><p>Queremos ser fieles a lo dicho. Consigue pequeños "sí" que preparen el "sí" grande.</p><p class="mini">Ejemplo: "¿Le gustaría ahorrar tiempo?" → "Sí" → ya avanzaste.</p></div>
+      <div class="card"><div class="ic" style="background:var(--gold)">3</div><h4>Prueba social</h4><p>Miramos a los demás para decidir. Testimonios, cifras y casos reducen el miedo a equivocarse.</p><p class="mini">Ejemplo: "9 de cada 10 clientes renuevan."</p></div>
+      <div class="card"><div class="ic" style="background:var(--coral)">4</div><h4>Autoridad</h4><p>Confiamos en el experto. Muestra credenciales, resultados y seguridad al hablar.</p><p class="mini">Ejemplo: "Recomendado por especialistas."</p></div>
+      <div class="card"><div class="ic" style="background:var(--violet)">5</div><h4>Simpatía</h4><p>Le compramos a quien nos cae bien y se nos parece. Encuentra puntos en común y elogia con verdad.</p><p class="mini">Ejemplo: espejo de lenguaje, intereses compartidos.</p></div>
+      <div class="card"><div class="ic" style="background:var(--gold)">6</div><h4>Escasez</h4><p>Valoramos más lo que puede faltar. Plazos, cupos y ediciones limitadas activan la acción.</p><p class="mini">Ejemplo: "Últimas 3 unidades / oferta hasta hoy."</p></div>
+      <div class="card"><div class="ic" style="background:var(--teal)">7</div><h4>Unidad</h4><p>Actuamos por quienes sentimos "de los nuestros". Habla de "nosotros", identidad y comunidad.</p><p class="mini">Ejemplo: "Esto es para gente como tú, que…"</p></div>
+    </div>
+
+    <div class="callout sci"><span class="tag">🔬 Base científica</span><p>Estos siete principios se han replicado en miles de experimentos de psicología social. Funcionan porque son <strong>atajos que el cerebro usa para decidir sin agotarse</strong>. No los inventamos: los descubrimos.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 4 — Los 7 en una frase</span>
+      <h4>Construye tu guion persuasivo</h4>
+      <p>Elige un producto y escribe <strong>una sola frase por principio</strong> (siete frases) que lo vendan. Luego únelas: acabas de crear un pequeño discurso de venta que activa los siete resortes.</p>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 6 ===================== -->
+<section id="c6" class="chap tone-coral">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">06</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> El arco emocional</p>
+        <h2>La curva de la emocionalidad</h2>
+      </div>
+    </div>
+    <p class="lead">Una venta no es plana: es un <strong>viaje emocional</strong>. El cliente entra en cierto estado, tú lo llevas por una montaña de sensaciones y lo dejas listo para decidir. Los vendedores que ignoran esta curva suenan monótonos; los que la dominan, hipnotizan.</p>
+  </div>
+
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 1080 420" role="img" aria-labelledby="curve-t">
+        <title id="curve-t">La curva de la emocionalidad a lo largo de una venta</title>
+        <!-- ejes -->
+        <line x1="70" y1="360" x2="1030" y2="360" stroke="var(--border-strong)" stroke-width="2"/>
+        <line x1="70" y1="40" x2="70" y2="360" stroke="var(--border-strong)" stroke-width="2"/>
+        <text x="30" y="205" class="figtext" font-size="12" fill="var(--muted)" transform="rotate(-90 30 205)" text-anchor="middle">Intensidad emocional</text>
+        <!-- zona de área -->
+        <defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--coral)" stop-opacity=".35"/>
+            <stop offset="1" stop-color="var(--coral)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M70 330 C 180 320 210 300 300 250 C 380 205 400 300 470 250 C 560 190 560 90 680 90 C 760 90 780 150 860 150 C 930 150 950 120 1010 70 L1010 360 L70 360 Z" fill="url(#cg)"/>
+        <path d="M70 330 C 180 320 210 300 300 250 C 380 205 400 300 470 250 C 560 190 560 90 680 90 C 760 90 780 150 860 150 C 930 150 950 120 1010 70" fill="none" stroke="var(--coral)" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- puntos fase -->
+        <g class="figtext" font-size="13" text-anchor="middle">
+          <circle cx="150" cy="325" r="6" fill="var(--teal)"/>
+          <text x="150" y="390" font-weight="700" fill="var(--ink)">Apertura</text>
+          <text x="150" y="408" fill="var(--muted)">confianza</text>
+
+          <circle cx="470" cy="250" r="6" fill="var(--violet)"/>
+          <text x="470" y="390" font-weight="700" fill="var(--ink)">El dolor</text>
+          <text x="470" y="408" fill="var(--muted)">tensión / problema</text>
+
+          <circle cx="680" cy="90" r="7" fill="var(--coral)"/>
+          <text x="680" y="70" font-weight="800" fill="var(--coral)">Clímax: el deseo</text>
+
+          <circle cx="1010" cy="70" r="6" fill="var(--gold)"/>
+          <text x="960" y="405" font-weight="700" fill="var(--ink)" text-anchor="end">Cierre</text>
+          <text x="1015" y="405" fill="var(--muted)" text-anchor="start">seguridad</text>
+        </g>
+      </svg>
+      <figcaption>La emoción sube desde la confianza inicial, atraviesa el dolor del problema, llega al pico del deseo con la solución, y aterriza en la seguridad que permite cerrar.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <h3>Las cinco fases del viaje</h3>
+    <div class="steps">
+      <div class="step"><div><h4>Apertura — construir confianza</h4><p>Sonrisa en la voz, nombre del cliente, una pregunta cálida. Objetivo: que baje la guardia. Emoción: calma y curiosidad.</p></div></div>
+      <div class="step"><div><h4>Exploración — encontrar el dolor</h4><p>Preguntas que revelan el problema real. No vendas aún: <strong>haz consciente la herida</strong>. Emoción: incomodidad que crece.</p></div></div>
+      <div class="step"><div><h4>Tensión — agitar el problema</h4><p>¿Qué pasa si no lo resuelve? Consecuencias, costo de no actuar. Emoción: urgencia. Aquí se prepara el pico.</p></div></div>
+      <div class="step"><div><h4>Clímax — mostrar la solución</h4><p>Presentas el producto como el alivio exacto. Pintas el "después". Emoción: deseo y esperanza. <strong>Es el punto más alto.</strong></p></div></div>
+      <div class="step"><div><h4>Cierre — aterrizar en seguridad</h4><p>Bajas la intensidad, das garantías, quitas el riesgo. Emoción: tranquilidad para decir sí sin miedo.</p></div></div>
+    </div>
+
+    <div class="callout warn"><span class="tag">⚠ Error común</span><p>Vender siempre "arriba", con euforia constante, agota al cliente y suena a presión. La emoción necesita <strong>contraste</strong>: sin el valle del dolor, el pico del deseo no impresiona. La curva vende, la línea recta aburre.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 5 — Dibuja tu curva</span>
+      <h4>Diseña el arco de tu propia venta</h4>
+      <ol>
+        <li>Elige un producto y escribe una frase para <strong>cada una de las cinco fases</strong>.</li>
+        <li>Léelo en voz alta grabándote. ¿Se oye el valle y el pico, o todo suena igual?</li>
+        <li>Ajusta el tono: susurra la tensión, eleva el clímax, calma el cierre.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 7 ===================== -->
+<section id="c7" class="chap tone-gold">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">07</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> El modelo</p>
+        <h2>Los cuadrantes de la venta</h2>
+      </div>
+    </div>
+    <p class="lead">¿Cuánto pesa realmente el producto en una venta? Mucho menos de lo que se cree. Aquí verás dos mapas: el <strong>peso de cada elemento en la decisión</strong> y la <strong>matriz de importancia</strong> que te dice dónde poner tu energía.</p>
+  </div>
+
+  <!-- Peso: producto vs persona/emoción -->
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 1080 360" role="img" aria-labelledby="quad-t">
+        <title id="quad-t">Peso de cada elemento en la decisión de compra</title>
+        <text x="540" y="40" text-anchor="middle" class="figtext t-title" font-size="18" fill="var(--ink)">¿Qué pesa en la decisión de compra?</text>
+        <!-- barras horizontales -->
+        <g class="figtext" font-size="15">
+          <!-- Confianza en la persona 40 -->
+          <text x="70" y="98" fill="var(--ink)" font-weight="700">Confianza en el vendedor</text>
+          <rect x="70" y="108" width="920" height="26" rx="8" fill="var(--surface-2)"/>
+          <rect x="70" y="108" width="368" height="26" rx="8" fill="var(--violet)"/>
+          <text x="450" y="127" fill="var(--violet)" font-weight="800">40%</text>
+          <!-- Emoción / deseo 35 -->
+          <text x="70" y="168" fill="var(--ink)" font-weight="700">Emoción y deseo generado</text>
+          <rect x="70" y="178" width="920" height="26" rx="8" fill="var(--surface-2)"/>
+          <rect x="70" y="178" width="322" height="26" rx="8" fill="var(--coral)"/>
+          <text x="404" y="197" fill="var(--coral)" font-weight="800">35%</text>
+          <!-- Producto 25 -->
+          <text x="70" y="238" fill="var(--ink)" font-weight="700">El producto en sí</text>
+          <rect x="70" y="248" width="920" height="26" rx="8" fill="var(--surface-2)"/>
+          <rect x="70" y="248" width="230" height="26" rx="8" fill="var(--gold)"/>
+          <text x="312" y="267" fill="var(--gold)" font-weight="800">25%</text>
+        </g>
+        <text x="540" y="320" text-anchor="middle" class="figtext" font-size="13.5" fill="var(--muted)">El 75% de la decisión es humano y emocional. El producto sostiene, no convence por sí solo.</text>
+      </svg>
+      <figcaption>Cifras orientativas para ilustrar la proporción: la mayor parte de una venta se juega en la relación y la emoción, no en la ficha del producto.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <p>Estos porcentajes varían según el producto (un software técnico pesa más en producto que un perfume), pero la lección es estable: <strong>si dedicas el 90% de tu esfuerzo al 25% de la decisión, estás vendiendo al revés</strong>. Invierte primero en confianza y emoción.</p>
+  </div>
+
+  <!-- Matriz importancia x esfuerzo -->
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 720 560" role="img" aria-labelledby="matrix-t">
+        <title id="matrix-t">Matriz: importancia para el cliente frente a fortaleza de tu producto</title>
+        <!-- ejes -->
+        <line x1="90" y1="60" x2="90" y2="480" stroke="var(--border-strong)" stroke-width="2"/>
+        <line x1="90" y1="480" x2="650" y2="480" stroke="var(--border-strong)" stroke-width="2"/>
+        <text x="370" y="520" text-anchor="middle" class="figtext t-lbl" font-size="14" fill="var(--ink)">Fortaleza de tu producto  →</text>
+        <text x="45" y="270" text-anchor="middle" class="figtext t-lbl" font-size="14" fill="var(--ink)" transform="rotate(-90 45 270)">Importancia para el cliente  →</text>
+        <!-- cuadrantes -->
+        <rect x="90" y="60" width="280" height="210" fill="var(--gold-soft)"/>
+        <rect x="370" y="60" width="280" height="210" fill="var(--teal-soft)"/>
+        <rect x="90" y="270" width="280" height="210" fill="var(--coral-soft)"/>
+        <rect x="370" y="270" width="280" height="210" fill="var(--violet-soft)"/>
+        <line x1="370" y1="60" x2="370" y2="480" stroke="var(--surface)" stroke-width="2"/>
+        <line x1="90" y1="270" x2="650" y2="270" stroke="var(--surface)" stroke-width="2"/>
+        <g class="figtext" text-anchor="middle">
+          <text x="230" y="150" font-size="16" font-weight="800" fill="var(--gold)">MEJORAR</text>
+          <text x="230" y="176" font-size="12.5" fill="var(--ink-soft)">Le importa, pero tu</text>
+          <text x="230" y="194" font-size="12.5" fill="var(--ink-soft)">producto es débil aquí:</text>
+          <text x="230" y="212" font-size="12.5" fill="var(--ink-soft)">refuerza el argumento.</text>
+
+          <text x="510" y="150" font-size="16" font-weight="800" fill="var(--teal)">ATACAR</text>
+          <text x="510" y="176" font-size="12.5" fill="var(--ink-soft)">Le importa y eres fuerte:</text>
+          <text x="510" y="194" font-size="12.5" fill="var(--ink-soft)">aquí va el 80% de tu</text>
+          <text x="510" y="212" font-size="12.5" fill="var(--ink-soft)">discurso. Zona de oro.</text>
+
+          <text x="230" y="360" font-size="16" font-weight="800" fill="var(--coral)">IGNORAR</text>
+          <text x="230" y="386" font-size="12.5" fill="var(--ink-soft)">Ni le importa ni destacas:</text>
+          <text x="230" y="404" font-size="12.5" fill="var(--ink-soft)">no gastes tiempo aquí.</text>
+
+          <text x="510" y="360" font-size="16" font-weight="800" fill="var(--violet)">NO PRESUMIR</text>
+          <text x="510" y="386" font-size="12.5" fill="var(--ink-soft)">Eres fuerte pero no le</text>
+          <text x="510" y="404" font-size="12.5" fill="var(--ink-soft)">importa: menciónalo,</text>
+          <text x="510" y="422" font-size="12.5" fill="var(--ink-soft)">no te extiendas.</text>
+        </g>
+      </svg>
+      <figcaption>Cruza <strong>lo que le importa al cliente</strong> con <strong>dónde tu producto es fuerte</strong>. Tu discurso vive en el cuadrante "Atacar": alta importancia y alta fortaleza.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <div class="callout key"><span class="tag">◆ Cómo usar la matriz</span><p>Antes de cada visita, ubica tus argumentos en los cuatro cuadrantes. La mayoría de los vendedores hablan de lo que a <em>ellos</em> les gusta del producto (cuadrante "No presumir"). El experto habla solo de lo que <strong>al cliente le importa y él hace bien</strong>. Menos argumentos, mejor colocados.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 6 — Tu matriz personal</span>
+      <h4>Coloca tus argumentos</h4>
+      <ol>
+        <li>Lista <strong>6 características</strong> de tu producto.</li>
+        <li>Pregúntale a 3 clientes qué es lo más importante para ellos.</li>
+        <li>Ubica cada característica en un cuadrante. Quédate solo con las de la zona "Atacar" para tu discurso principal.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 8 ===================== -->
+<section id="c8" class="chap tone-teal">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">08</div>
+      <div>
+        <p class="eyebrow"><span class="dot" style="background:var(--teal)"></span> Comunicación</p>
+        <h2>La voz: tu instrumento invisible</h2>
+      </div>
+    </div>
+    <p class="lead">En una conversación cara a cara, las palabras son solo una parte del mensaje. La investigación clásica de Albert Mehrabian sobre la comunicación de <strong>sentimientos y actitudes</strong> encontró una proporción que se volvió famosa: cuando hay incoherencia entre lo que se dice y cómo se dice, gana el "cómo".</p>
+  </div>
+
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 720 420" role="img" aria-labelledby="meh-t">
+        <title id="meh-t">Regla 7-38-55 de Mehrabian sobre comunicación emocional</title>
+        <text x="360" y="42" text-anchor="middle" class="figtext t-title" font-size="18" fill="var(--ink)">Cómo se percibe el mensaje emocional</text>
+        <!-- donut -->
+        <g transform="translate(230,235)">
+          <!-- fondo -->
+          <circle r="120" fill="none" stroke="var(--surface-2)" stroke-width="46"/>
+          <!-- 55% cuerpo -->
+          <circle r="120" fill="none" stroke="var(--coral)" stroke-width="46" stroke-dasharray="414.7 753.9" transform="rotate(-90)"/>
+          <!-- 38% voz  (offset 55%) -->
+          <circle r="120" fill="none" stroke="var(--teal)" stroke-width="46" stroke-dasharray="286.5 753.9" stroke-dashoffset="-414.7" transform="rotate(-90)"/>
+          <!-- 7% palabras (offset 93%) -->
+          <circle r="120" fill="none" stroke="var(--gold)" stroke-width="46" stroke-dasharray="52.8 753.9" stroke-dashoffset="-701.1" transform="rotate(-90)"/>
+          <text text-anchor="middle" class="figtext" font-size="15" fill="var(--muted)" y="-6">Mensaje</text>
+          <text text-anchor="middle" class="figtext" font-size="15" fill="var(--muted)" y="16">emocional</text>
+        </g>
+        <!-- leyenda -->
+        <g class="figtext" font-size="15" transform="translate(430,150)">
+          <rect x="0" y="-16" width="16" height="16" rx="4" fill="var(--coral)"/>
+          <text x="28" y="-2" font-weight="800" fill="var(--ink)">55% — Lenguaje corporal</text>
+          <text x="28" y="20" font-size="13.5" fill="var(--muted)">postura, gestos, mirada</text>
+
+          <rect x="0" y="54" width="16" height="16" rx="4" fill="var(--teal)"/>
+          <text x="28" y="68" font-weight="800" fill="var(--ink)">38% — La voz</text>
+          <text x="28" y="90" font-size="13.5" fill="var(--muted)">tono, ritmo, volumen, pausas</text>
+
+          <rect x="0" y="124" width="16" height="16" rx="4" fill="var(--gold)"/>
+          <text x="28" y="138" font-weight="800" fill="var(--ink)">7% — Las palabras</text>
+          <text x="28" y="160" font-size="13.5" fill="var(--muted)">el contenido literal</text>
+        </g>
+      </svg>
+      <figcaption>La regla 7-38-55 aplica a la comunicación de emociones y actitudes, no a todo mensaje. Su lección para vender: <strong>cómo lo dices importa más que las palabras exactas</strong>. Por teléfono, ese 55% corporal se traslada a tu voz.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <div class="callout sci"><span class="tag">🔬 Matiz honesto</span><p>La regla 7-38-55 se malinterpreta a menudo. Mehrabian la midió para mensajes <strong>emocionales contradictorios</strong> (cuando el tono contradice la palabra). No significa que el contenido no importe. La conclusión válida y útil: en la venta, que es pura emoción, <strong>tu tono y tu cuerpo deben reforzar tus palabras</strong>, nunca contradecirlas.</p></div>
+
+    <h3>Los siete controles de tu voz</h3>
+    <table class="data">
+      <thead><tr><th>Control</th><th>Para qué sirve</th><th>Truco práctico</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tono</strong></td><td>Transmite emoción y calidez.</td><td>Sonríe al hablar: se oye. Baja el tono al cerrar (da autoridad).</td></tr>
+        <tr><td><strong>Ritmo</strong></td><td>Mantiene la atención.</td><td>Acelera al emocionar, frena al dar lo importante.</td></tr>
+        <tr><td><strong>Volumen</strong></td><td>Marca energía y seguridad.</td><td>Sube en el beneficio, baja para crear intimidad.</td></tr>
+        <tr><td><strong>Pausa</strong></td><td>Da peso y provoca respuesta.</td><td>Tras una pregunta clave: <em>calla</em>. El silencio vende.</td></tr>
+        <tr><td><strong>Énfasis</strong></td><td>Dirige lo que el cliente recuerda.</td><td>Recalca la palabra emocional: "esto le da <em>tranquilidad</em>".</td></tr>
+        <tr><td><strong>Claridad</strong></td><td>Genera confianza y control.</td><td>Vocaliza; no atropelles el final de las frases.</td></tr>
+        <tr><td><strong>Cadencia</strong></td><td>Crea hipnosis y fluidez.</td><td>Frases cortas + largas alternadas suenan a experto.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="pull">El silencio bien puesto es el argumento más poderoso del vendedor.</div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 7 — El laboratorio de la voz</span>
+      <h4>Graba, escucha, ajusta</h4>
+      <ol>
+        <li>Lee este párrafo tres veces, grabándote: primero <strong>plano</strong>, luego con <strong>emoción exagerada</strong>, luego <strong>natural pero cálido</strong>.</li>
+        <li>Escúchate. ¿Dónde suena falso? ¿Dónde convence?</li>
+        <li>Practica una pausa de <strong>3 segundos</strong> después de tu pregunta de cierre. Cronométrala: se sentirá eterna, y funciona.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 9 ===================== -->
+<section id="c9" class="chap tone-violet">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">09</div>
+      <div>
+        <p class="eyebrow"><span class="dot" style="background:var(--violet)"></span> Comunicación</p>
+        <h2>El lenguaje corporal</h2>
+      </div>
+    </div>
+    <p class="lead">Ese 55% del capítulo anterior tiene cuerpo. En la venta presencial, tu postura y tus gestos hablan antes que tú y <strong>el cliente los cree más que a tus palabras</strong>. También aprenderás a leer los del cliente.</p>
+
+    <h3>Lo que tu cuerpo debe decir</h3>
+    <div class="grid2">
+      <div class="card"><h4>👁️ Contacto visual</h4><p>Sostén la mirada el 60–70% del tiempo. Demasiado poco = inseguridad; demasiado = presión. Mira, no vigiles.</p></div>
+      <div class="card"><h4>🧍 Postura abierta</h4><p>Hombros atrás, pecho abierto, sin cruzar brazos. Ocupar tu espacio con calma comunica seguridad.</p></div>
+      <div class="card"><h4>🤝 Gestos con palmas</h4><p>Mostrar las palmas transmite honestidad. Los gestos que acompañan la voz dan credibilidad.</p></div>
+      <div class="card"><h4>🪞 Reflejo (rapport)</h4><p>Iguala sutilmente el ritmo y la postura del cliente. Genera la sensación inconsciente de "es de los míos".</p></div>
+      <div class="card"><h4>😊 Sonrisa real</h4><p>La sonrisa auténtica (que llega a los ojos) baja las defensas y activa reciprocidad.</p></div>
+      <div class="card"><h4>↔️ Proximidad</h4><p>Respeta el espacio personal. Acércate al conectar, no invadas. La distancia también negocia.</p></div>
+    </div>
+
+    <h3>Lee al cliente</h3>
+    <table class="data">
+      <thead><tr><th>Señal del cliente</th><th>Suele significar</th><th>Tu jugada</th></tr></thead>
+      <tbody>
+        <tr><td>Se echa hacia atrás, brazos cruzados</td><td>Duda, defensa</td><td>Baja la presión, pregunta qué le preocupa.</td></tr>
+        <tr><td>Se inclina hacia adelante, asiente</td><td>Interés, apertura</td><td>Avanza: es momento de mostrar la solución.</td></tr>
+        <tr><td>Toca o sostiene el producto</td><td>Apropiación mental</td><td>Refuerza la posesión: "imagínelo ya en su casa".</td></tr>
+        <tr><td>Mira el reloj / el teléfono</td><td>Impaciencia, poco tiempo</td><td>Ve al grano, resume el beneficio principal.</td></tr>
+        <tr><td>Se toca la cara, mirada baja</td><td>Incertidumbre, cálculo</td><td>Silencio y espacio: está decidiendo. No interrumpas.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn"><span class="tag">⚠ Cuidado</span><p>El lenguaje corporal se lee <strong>en conjunto y en contexto</strong>, nunca por un solo gesto aislado. Brazos cruzados pueden significar frío, no rechazo. Busca <em>racimos</em> de señales y cambios respecto al estado normal de la persona.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 8 — El observador silencioso</span>
+      <h4>Entrena tu lectura</h4>
+      <ul>
+        <li>En una cafetería, observa <strong>tres conversaciones</strong> sin oír las palabras.</li>
+        <li>Adivina quién domina, quién duda, quién está a gusto. Fíjate en postura, distancia y manos.</li>
+        <li>Luego, frente al espejo, ensaya tu postura de "vendedor seguro". Que tu cuerpo aprenda antes que tu boca.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 10 ===================== -->
+<section id="c10" class="chap tone-coral">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">10</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> Canal telefónico</p>
+        <h2>Ventas por call center</h2>
+      </div>
+    </div>
+    <p class="lead">El teléfono es el examen más difícil del vendedor: no ves al cliente, no te ve, tienes segundos para enganchar y él puede colgar sin costo. Toda tu emoción viaja por <strong>un solo canal: la voz</strong>. Por eso quien vende bien por teléfono, vende bien en cualquier parte.</p>
+
+    <h3>Anatomía de una llamada que vende</h3>
+  </div>
+
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 1080 300" role="img" aria-labelledby="call-t">
+        <title id="call-t">Las seis fases de una llamada de ventas</title>
+        <g class="figtext" font-size="13.5">
+          <!-- flechas -->
+          <g fill="var(--surface-2)" stroke="var(--border)">
+            <path d="M40 90 h150 l20 40 l-20 40 h-150 l20 -40 Z"/>
+            <path d="M215 90 h150 l20 40 l-20 40 h-150 l20 -40 Z"/>
+            <path d="M390 90 h150 l20 40 l-20 40 h-150 l20 -40 Z"/>
+            <path d="M565 90 h150 l20 40 l-20 40 h-150 l20 -40 Z"/>
+            <path d="M740 90 h150 l20 40 l-20 40 h-150 l20 -40 Z"/>
+            <path d="M915 90 h120 l20 40 l-20 40 h-120 l20 -40 Z"/>
+          </g>
+          <g text-anchor="middle" font-weight="800" fill="var(--ink)">
+            <text x="120" y="125">1. Gancho</text>
+            <text x="295" y="125">2. Permiso</text>
+            <text x="470" y="125">3. Diagnóstico</text>
+            <text x="645" y="125">4. Solución</text>
+            <text x="820" y="125">5. Objeciones</text>
+            <text x="985" y="125">6. Cierre</text>
+          </g>
+          <g text-anchor="middle" fill="var(--muted)" font-size="12">
+            <text x="120" y="200">10 seg para</text><text x="120" y="216">captar</text>
+            <text x="295" y="200">"¿le tomo un</text><text x="295" y="216">minuto?"</text>
+            <text x="470" y="200">preguntas que</text><text x="470" y="216">hallan el dolor</text>
+            <text x="645" y="200">beneficio, no</text><text x="645" y="216">características</text>
+            <text x="820" y="200">escuchar y</text><text x="820" y="216">reencuadrar</text>
+            <text x="985" y="200">pedir la</text><text x="985" y="216">decisión</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>Un guion no es una camisa de fuerza: es un mapa. Te da estructura para improvisar con seguridad.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <h3>Reglas de oro del teléfono</h3>
+    <ul class="clean">
+      <li><strong>Sonríe físicamente al hablar.</strong> La sonrisa cambia la resonancia de tu voz: el cliente la percibe sin verla.</li>
+      <li><strong>Ponte de pie.</strong> Estar parado da energía y proyección; se nota en la voz.</li>
+      <li><strong>Usa su nombre.</strong> Es la palabra que más engancha al cerebro. Repítela con naturalidad.</li>
+      <li><strong>Los primeros 10 segundos lo son todo.</strong> Abre con un beneficio o una pregunta, nunca con "le llamo para ofrecerle…".</li>
+      <li><strong>Habla el 30%, escucha el 70%.</strong> El que pregunta, controla. El que monologa, pierde.</li>
+      <li><strong>No temas al silencio.</strong> Tras el precio o el cierre, calla. El primero que habla, cede.</li>
+      <li><strong>Ten un guion, no un discurso.</strong> Memoriza la estructura y las frases clave, no el texto entero: sonar leído mata la venta.</li>
+    </ul>
+
+    <div class="callout key"><span class="tag">◆ El gancho de los 10 segundos</span><p>Mal: <em>"Buenos días, le llamo de la empresa X para ofrecerle nuestros planes."</em> (El cerebro reptil ya activó "amenaza, colgar".)<br>Bien: <em>"Hola [nombre], le llamo porque encontramos una forma de que pague menos por lo mismo que ya usa. ¿Le doy el dato en un minuto?"</em> (Beneficio + permiso + brevedad.)</p></div>
+
+    <h3>Manejo de objeciones al teléfono</h3>
+    <table class="data">
+      <thead><tr><th>Objeción</th><th>Qué esconde</th><th>Respuesta modelo</th></tr></thead>
+      <tbody>
+        <tr><td>"No tengo tiempo"</td><td>No ve valor todavía</td><td>"Por eso mismo le llamo: en 60 segundos le digo si le conviene, y usted decide."</td></tr>
+        <tr><td>"Está muy caro"</td><td>No percibe suficiente valor</td><td>"Le entiendo. ¿Caro comparado con qué? Déjeme mostrarle lo que incluye…"</td></tr>
+        <tr><td>"Déjeme pensarlo"</td><td>Duda o miedo no resuelto</td><td>"Claro. Para ayudarle a pensarlo bien, ¿qué es lo que aún no le cierra?"</td></tr>
+        <tr><td>"Ya tengo proveedor"</td><td>Comodidad, no fidelidad</td><td>"Perfecto, no le pido que cambie. Solo que compare un dato. ¿Le parece?"</td></tr>
+        <tr><td>"Envíame información"</td><td>Cortesía para cortar</td><td>"Con gusto. Para mandarle solo lo que le sirve, dígame: ¿qué es lo más importante para usted?"</td></tr>
+      </tbody>
+    </table>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 9 — Tu guion de 60 segundos</span>
+      <h4>Escribe y ensaya tu llamada</h4>
+      <ol>
+        <li>Redacta las <strong>seis fases</strong> para un producto real, con un gancho de 10 segundos.</li>
+        <li>Prepara una respuesta para las <strong>cinco objeciones</strong> de la tabla.</li>
+        <li>Practica con alguien que te interrumpa y sea difícil. Grábate y mide: ¿hablaste menos del 40% del tiempo?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 11 ===================== -->
+<section id="c11" class="chap tone-teal">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">11</div>
+      <div>
+        <p class="eyebrow"><span class="dot" style="background:var(--teal)"></span> Metodologías</p>
+        <h2>Metodologías: AIDA, SPIN y más</h2>
+      </div>
+    </div>
+    <p class="lead">Las técnicas sueltas se olvidan; los <strong>sistemas</strong> se ejecutan. Aquí tienes los métodos probados que estructuran una venta de principio a fin. Elige uno, domínalo, y tendrás un camino claro en cada conversación.</p>
+
+    <h3>AIDA — el embudo clásico</h3>
+  </div>
+
+  <div class="wide">
+    <figure>
+      <svg viewBox="0 0 720 400" role="img" aria-labelledby="aida-t">
+        <title id="aida-t">Embudo AIDA: Atención, Interés, Deseo, Acción</title>
+        <g class="figtext" text-anchor="middle">
+          <path d="M110 50 h500 l-70 80 h-360 Z" fill="var(--coral)"/>
+          <text x="360" y="98" font-size="18" font-weight="800" fill="#fff">ATENCIÓN</text>
+          <path d="M180 140 h360 l-70 80 h-220 Z" fill="var(--gold)"/>
+          <text x="360" y="188" font-size="18" font-weight="800" fill="#fff">INTERÉS</text>
+          <path d="M250 230 h220 l-70 80 h-80 Z" fill="var(--violet)"/>
+          <text x="360" y="278" font-size="18" font-weight="800" fill="#fff">DESEO</text>
+          <path d="M320 320 h80 l-8 60 h-64 Z" fill="var(--teal)"/>
+          <text x="360" y="358" font-size="15" font-weight="800" fill="#fff">ACCIÓN</text>
+        </g>
+        <g class="figtext" font-size="13.5" fill="var(--ink-soft)" text-anchor="start">
+          <text x="628" y="94">Capta con un gancho</text>
+          <text x="560" y="184">Conecta con su necesidad</text>
+          <text x="490" y="274">Enciende el "lo quiero"</text>
+          <text x="410" y="360">Pide la decisión</text>
+        </g>
+      </svg>
+      <figcaption>AIDA describe el viaje mental del cliente. Cada frase tuya debe empujarlo un escalón hacia abajo, nunca dejarlo estancado.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <h3>SPIN — vender preguntando</h3>
+    <p>Desarrollado por Neil Rackham a partir de miles de visitas reales, SPIN es oro para ventas de mayor valor. En lugar de argumentar, <strong>haces preguntas en cuatro niveles</strong> que llevan al cliente a convencerse solo:</p>
+    <div class="steps">
+      <div class="step"><div><h4>S · Situación</h4><p>Entiende su contexto. "¿Cómo lo hacen hoy?" No abuses: pocas y precisas.</p></div></div>
+      <div class="step"><div><h4>P · Problema</h4><p>Destapa dificultades. "¿Qué les cuesta más de ese proceso?"</p></div></div>
+      <div class="step"><div><h4>I · Implicación</h4><p>Agranda el dolor. "¿Y eso cuánto tiempo/dinero les hace perder al mes?"</p></div></div>
+      <div class="step"><div><h4>N · Necesidad-beneficio</h4><p>Que él diga la solución. "Si esto se resolviera, ¿qué ganarían?"</p></div></div>
+    </div>
+
+    <h3>Otros sistemas que vale la pena conocer</h3>
+    <div class="grid2">
+      <div class="card"><h4>PAS</h4><p><strong>P</strong>roblema · <strong>A</strong>gitación · <strong>S</strong>olución. Perfecto para textos, anuncios y guiones cortos.</p></div>
+      <div class="card"><h4>Venta Challenger</h4><p>Enseñar, personalizar y tomar el control. El vendedor aporta una idea nueva que reencuadra el problema.</p></div>
+      <div class="card"><h4>Método Sandler</h4><p>Califica duro y sin presión: si no encaja, te retiras. Invierte la relación de poder.</p></div>
+      <div class="card"><h4>Venta consultiva</h4><p>Eres asesor, no vendedor. Diagnosticas y recomiendas; la venta es consecuencia.</p></div>
+    </div>
+
+    <div class="callout key"><span class="tag">◆ Cómo elegir</span><p>Para venta rápida o telefónica: <strong>AIDA</strong> o <strong>PAS</strong>. Para venta compleja, cara o B2B: <strong>SPIN</strong> o <strong>consultiva</strong>. No mezcles cinco métodos: domina uno hasta que sea instinto, y luego suma.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 10 — Un producto, dos métodos</span>
+      <h4>Siente la diferencia</h4>
+      <p>Toma un mismo producto y escribe su venta con <strong>AIDA</strong> (afirmando) y con <strong>SPIN</strong> (preguntando). Nota cómo el segundo hace que el cliente se convenza solo. ¿Cuál te sale más natural? Ese es tu punto de partida.</p>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 12 ===================== -->
+<section id="c12" class="chap tone-gold">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">12</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> El momento decisivo</p>
+        <h2>Objeciones y cierres</h2>
+      </div>
+    </div>
+    <p class="lead">Aquí se separan los aficionados de los profesionales. Una objeción no es un "no": es un <strong>"todavía no me has convencido de esto"</strong>. Y un cierre no es presionar: es <strong>ayudar a decidir</strong> a quien ya quiere, pero teme.</p>
+
+    <h3>La fórmula universal para objeciones</h3>
+    <div class="steps">
+      <div class="step"><div><h4>1 · Escucha completa</h4><p>Déjalo terminar. No interrumpas ni te defiendas. La objeción es información regalada.</p></div></div>
+      <div class="step"><div><h4>2 · Valida</h4><p>"Entiendo perfectamente por qué lo dice." Bajas la guardia y no lo haces sentir tonto.</p></div></div>
+      <div class="step"><div><h4>3 · Pregunta</h4><p>"¿Qué es exactamente lo que le preocupa?" Encuentra la objeción <em>real</em> tras la aparente.</p></div></div>
+      <div class="step"><div><h4>4 · Reencuadra</h4><p>Responde a la preocupación real con un beneficio o prueba. Cambia el marco.</p></div></div>
+      <div class="step"><div><h4>5 · Confirma y avanza</h4><p>"¿Le resuelve esto la duda?" Si sí, cierra. No dejes la objeción a medias.</p></div></div>
+    </div>
+
+    <div class="callout warn"><span class="tag">⚠ La objeción del precio</span><p>"Está caro" casi nunca es sobre dinero: es sobre <strong>valor percibido</strong>. Nunca bajes el precio de inmediato (destruyes tu credibilidad y tu margen). Primero <strong>sube el valor</strong>: recuerda beneficios, compara con el costo de no comprar, fracciona el precio ("son 2 pesos al día"). El precio se justifica con valor, no con descuento.</p></div>
+
+    <h3>Seis cierres que funcionan</h3>
+    <table class="data">
+      <thead><tr><th>Cierre</th><th>Cómo suena</th><th>Cuándo usarlo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Alternativo</strong></td><td>"¿Lo prefiere en azul o en negro?"</td><td>Da por hecha la compra; elige entre dos "sí".</td></tr>
+        <tr><td><strong>Por escasez</strong></td><td>"Quedan dos a este precio."</td><td>Cuando hay dudas por postergar. Real, nunca falso.</td></tr>
+        <tr><td><strong>Del resumen</strong></td><td>"Entonces: se lleva esto, con esto y esto…"</td><td>Reafirma el valor acumulado antes de pedir el sí.</td></tr>
+        <tr><td><strong>De la pregunta</strong></td><td>"¿Empezamos hoy o el lunes?"</td><td>Convierte el "sí" en una decisión pequeña y concreta.</td></tr>
+        <tr><td><strong>Benjamin Franklin</strong></td><td>"Hagamos una lista de pros y contras."</td><td>Con clientes racionales que necesitan justificarse.</td></tr>
+        <tr><td><strong>De la garantía</strong></td><td>"Si no le gusta, se lo devolvemos."</td><td>Quita el miedo al riesgo, el freno más común.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="pull">Si no pides la venta, no la haces. El "no" que más duele es el que nunca te atreviste a provocar.</div>
+
+    <div class="callout key"><span class="tag">◆ La regla del cierre</span><p>Detecta las <strong>señales de compra</strong> (pregunta por el precio, por la entrega, por la garantía, empieza a hablar en presente "cuando lo tenga…"). En ese instante, <strong>deja de vender y cierra</strong>. Seguir argumentando después del "sí" mental reabre dudas.</p></div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Ejercicio 11 — El banco de objeciones</span>
+      <h4>Nunca más te agarran en frío</h4>
+      <ol>
+        <li>Escribe las <strong>10 objeciones</strong> más comunes de tu producto.</li>
+        <li>Para cada una, redacta tu respuesta con la fórmula de 5 pasos.</li>
+        <li>Memorízalas hasta que salgan solas. La improvisación se prepara.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 13 — HISTORIAS ===================== -->
+<section id="c13" class="chap tone-coral">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">13</div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span> Testimonio real</p>
+        <h2>Historias reales desde la trinchera</h2>
+      </div>
+    </div>
+    <p class="lead">La teoría convence a la cabeza; las historias convencen al corazón. En este capítulo van <strong>tus vivencias reales</strong>: las ventas que ganaste, las que perdiste y lo que te enseñaron. Cada principio de este libro cobrará vida con una anécdota tuya.</p>
+
+    <div class="callout key"><span class="tag">◆ Este capítulo es tuyo</span><p>He dejado los espacios preparados abajo. <strong>Cuéntame tus historias</strong> (la primera gran venta, la peor caída, el cliente imposible, el cierre que no olvidas) y las escribiré con la fuerza narrativa de este libro, conectando cada una con el capítulo que ilustra.</p></div>
+
+    <div class="storyslot">
+      <span class="tag">★ Historia 1 — La primera venta</span>
+      <p class="ph">[Aquí irá tu relato: cómo fue tu primera venta importante, qué sentiste, qué técnica —sin saberlo aún— usaste. La conectaremos con el Capítulo 1.]</p>
+    </div>
+    <div class="storyslot">
+      <span class="tag">★ Historia 2 — El "no" que lo cambió todo</span>
+      <p class="ph">[La venta que perdiste y la lección que te dejó. La aterrizaremos en el Capítulo 12: objeciones y cierres.]</p>
+    </div>
+    <div class="storyslot">
+      <span class="tag">★ Historia 3 — El cliente imposible</span>
+      <p class="ph">[Aquel cliente durísimo y cómo lo ganaste (o no). Ideal para ilustrar psicología y manejo de objeciones.]</p>
+    </div>
+    <div class="storyslot">
+      <span class="tag">★ Historia 4 — La lección del call center</span>
+      <p class="ph">[Tu experiencia vendiendo por teléfono: la voz, la presión, el guion, el mejor cierre. Enlaza con el Capítulo 10.]</p>
+    </div>
+    <div class="storyslot">
+      <span class="tag">★ Historia 5 — La venta de mi vida</span>
+      <p class="ph">[Tu mejor cierre, el que cuentas siempre. El broche de oro del libro.]</p>
+    </div>
+
+    <div class="exercise">
+      <span class="tag">✏️ Cómo enviarme tus historias</span>
+      <h4>Con esto las escribo perfectas</h4>
+      <ul>
+        <li><strong>Contexto:</strong> qué vendías, a quién, en qué canal (presencial / teléfono).</li>
+        <li><strong>Tensión:</strong> qué salió mal o difícil, el momento clave.</li>
+        <li><strong>Desenlace:</strong> qué hiciste, qué dijiste, cómo terminó.</li>
+        <li><strong>Lección:</strong> qué aprendiste. Yo la enlazo con el principio del libro que corresponde.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- ===================== CAP 14 ===================== -->
+<section id="c14" class="chap tone-violet">
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">14</div>
+      <div>
+        <p class="eyebrow"><span class="dot" style="background:var(--violet)"></span> Cierre del libro</p>
+        <h2>Tu ruta para volverte experto</h2>
+      </div>
+    </div>
+    <p class="lead">Saber no es poder: <strong>hacer</strong> es poder. Este libro te dio el mapa completo —psicología, neuroventas, la curva emocional, los cuadrantes, la voz, el cuerpo, el teléfono, los métodos y los cierres—. Ahora conviértelo en instinto con un plan.</p>
+
+    <h3>El plan de 30 días del experto en ventas</h3>
+    <div class="steps">
+      <div class="step"><div><h4>Semana 1 — Mente</h4><p>Relee los capítulos 3 y 4. Haz los ejercicios de sesgos y del reptil. Empieza a ver toda compra como decisión emocional.</p></div></div>
+      <div class="step"><div><h4>Semana 2 — Voz y cuerpo</h4><p>Grábate a diario (cap. 8 y 9). Trabaja tono, pausa y postura. Practica una pausa de silencio real cada día.</p></div></div>
+      <div class="step"><div><h4>Semana 3 — Estructura</h4><p>Elige un método (AIDA o SPIN), arma tu guion de 60 segundos y tu banco de 10 objeciones. Ensáyalos hasta memorizarlos.</p></div></div>
+      <div class="step"><div><h4>Semana 4 — Fuego real</h4><p>Vende. Todos los días. Anota cada intento, qué funcionó y qué no. La cancha enseña lo que el libro no puede.</p></div></div>
+    </div>
+
+    <div class="callout sci"><span class="tag">🔬 La ciencia del hábito</span><p>La maestría no viene de leer, viene de la <strong>práctica deliberada</strong>: repetir con intención, medir el resultado y corregir. Un vendedor que graba y revisa 20 llamadas aprende más que uno que hace 200 sin mirarlas nunca.</p></div>
+
+    <h3>Los diez mandamientos del vendedor experto</h3>
+    <ul class="clean">
+      <li><strong>Véndele a la persona</strong>, no al mercado. Cada cliente es único.</li>
+      <li><strong>Primero conecta</strong>, después presenta. Sin confianza no hay venta.</li>
+      <li><strong>Pregunta más de lo que hablas.</strong> El que pregunta, dirige.</li>
+      <li><strong>Vende emoción</strong>, justifica con datos. En ese orden.</li>
+      <li><strong>Habla el idioma del reptil:</strong> seguridad, control, placer, pertenencia.</li>
+      <li><strong>Domina tu voz.</strong> Es el 38% que decide por teléfono, y más.</li>
+      <li><strong>Ama las objeciones:</strong> son el mapa hacia el sí.</li>
+      <li><strong>Pide siempre la venta.</strong> El cierre no se insinúa, se pide.</li>
+      <li><strong>Sé impecablemente honesto.</strong> La confianza es tu único activo irremplazable.</li>
+      <li><strong>Practica todos los días.</strong> El talento se entrena, no se hereda.</li>
+    </ul>
+
+    <div class="pull">No vendes productos: transformas la vida de las personas resolviéndoles algo. Hazlo con arte y con honor.</div>
+
+    <p>Has recorrido el mapa completo. Si aplicas aunque sea la mitad de lo que hay en estas páginas, ya estarás por encima del 90% de quienes venden por instinto. El otro camino —el de la maestría— empieza cuando cierras este libro y haces la próxima llamada. <strong>Ve y véndele al mundo algo que valga la pena.</strong></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="brandmark"><span class="sq"></span> El Código de la Venta</div>
+    <p>Manual de ventas, persuasión y neuroventas · Con espacio reservado para tus historias reales.</p>
+    <p class="credit-science">Fundamentos apoyados en psicología de la decisión (Kahneman), influencia (Cialdini), comunicación (Mehrabian), metodología SPIN (Rackham) y el modelo del cerebro triuno.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Tema: alterna claro/oscuro sobre la preferencia del sistema
+  var root=document.documentElement, btn=document.getElementById('themebtn');
+  function current(){
+    var attr=root.getAttribute('data-theme');
+    if(attr) return attr;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  btn.addEventListener('click',function(){
+    var next=current()==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+  });
+  // Barra de progreso de lectura
+  var bar=document.getElementById('progress');
+  function upd(){
+    var h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+    var p=max>0?(h.scrollTop/max)*100:0;
+    bar.style.width=p+'%';
+  }
+  document.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd); upd();
+})();
+</script>
+</body>
+</html>
