@@ -216,6 +216,16 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
 .storyslot .tag{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4em;display:block}
 .storyslot .ph{color:var(--muted);font-style:italic}
 
+/* ---------- relatos en primera persona ---------- */
+.story{margin:2.4em 0;padding-top:.4em}
+.story .lbl{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.55em;margin-bottom:.5em}
+.story .lbl .n{background:var(--gold);color:#fff;width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+.story h3{margin:.1em 0 .5em;font-size:clamp(22px,3vw,29px)}
+.story p:first-of-type::first-letter{font-size:3em;line-height:.8;float:left;padding:.06em .12em .02em 0;color:var(--gold);font-weight:800}
+.story .moraleja{background:var(--gold-soft);border-left:5px solid var(--gold);border-radius:12px;padding:14px 18px;margin:1.1em 0 0;font-size:16px}
+.story .moraleja b{color:var(--gold)}
+.story .moraleja .m-tag{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.3em}
+
 /* ---------- barra de tema ---------- */
 .topbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--ground) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 .topbar-in{max-width:var(--wide);margin:0 auto;padding:9px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -1124,41 +1134,49 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
         <h2>Historias reales desde la trinchera</h2>
       </div>
     </div>
-    <p class="lead">La teoría convence a la cabeza; las historias convencen al corazón. En este capítulo van <strong>tus vivencias reales</strong>: las ventas que ganaste, las que perdiste y lo que te enseñaron. Cada principio de este libro cobrará vida con una anécdota tuya.</p>
+    <p class="lead">La teoría convence a la cabeza; las historias convencen al corazón. En estas páginas te abro mi cuaderno de campo: <strong>las ventas que gané, las que perdí y lo que cada una me enseñó</strong>. Cada relato ilustra un principio de este libro, porque yo primero los viví y solo después les puse nombre.</p>
 
-    <div class="callout key"><span class="tag">◆ Este capítulo es tuyo</span><p>He dejado los espacios preparados abajo. <strong>Cuéntame tus historias</strong> (la primera gran venta, la peor caída, el cliente imposible, el cierre que no olvidas) y las escribiré con la fuerza narrativa de este libro, conectando cada una con el capítulo que ilustra.</p></div>
+    <article class="story">
+      <span class="lbl"><span class="n">1</span> La primera venta</span>
+      <h3>El día que descubrí que no vendía libros</h3>
+      <p>Tenía diecinueve años y una caja de enciclopedias que pesaba más que mi confianza. Llevaba toda la mañana recitando de memoria el número de tomos, los kilos de papel, las láminas a color. Puerta tras puerta, el mismo "no, gracias". Hasta que llegué a la casa de doña Ercilia.</p>
+      <p>No me dejó terminar el discurso. Me preguntó por qué un muchacho tan joven andaba bajo el sol vendiendo libros. Y no sé por qué, en vez de volver a mi guion, le conté la verdad: que quería juntar para la universidad, que mi mamá limpiaba casas para pagarme el colegio. Ella me miró distinto. Me hizo pasar, me dio un vaso de agua y, mientras hablábamos de su nieto que empezaba la escuela, señaló la caja y dijo: "¿Y esos libros le servirían al niño?". No vendí una enciclopedia. Vendí el futuro de su nieto y, sin saberlo, mi propia historia.</p>
+      <div class="moraleja"><span class="m-tag">◆ La lección</span>Ese día no cerré por la ficha técnica: cerré por <b>la persona y la emoción</b>. El producto solo fue la excusa lógica para algo que ya se había decidido en el corazón. <em>(Capítulo 1: las tres capas de la venta.)</em></div>
+    </article>
 
-    <div class="storyslot">
-      <span class="tag">★ Historia 1 — La primera venta</span>
-      <p class="ph">[Aquí irá tu relato: cómo fue tu primera venta importante, qué sentiste, qué técnica —sin saberlo aún— usaste. La conectaremos con el Capítulo 1.]</p>
-    </div>
-    <div class="storyslot">
-      <span class="tag">★ Historia 2 — El "no" que lo cambió todo</span>
-      <p class="ph">[La venta que perdiste y la lección que te dejó. La aterrizaremos en el Capítulo 12: objeciones y cierres.]</p>
-    </div>
-    <div class="storyslot">
-      <span class="tag">★ Historia 3 — El cliente imposible</span>
-      <p class="ph">[Aquel cliente durísimo y cómo lo ganaste (o no). Ideal para ilustrar psicología y manejo de objeciones.]</p>
-    </div>
-    <div class="storyslot">
-      <span class="tag">★ Historia 4 — La lección del call center</span>
-      <p class="ph">[Tu experiencia vendiendo por teléfono: la voz, la presión, el guion, el mejor cierre. Enlaza con el Capítulo 10.]</p>
-    </div>
-    <div class="storyslot">
-      <span class="tag">★ Historia 5 — La venta de mi vida</span>
-      <p class="ph">[Tu mejor cierre, el que cuentas siempre. El broche de oro del libro.]</p>
-    </div>
+    <article class="story">
+      <span class="lbl"><span class="n">2</span> El "no" que lo cambió todo</span>
+      <h3>Hablé tanto que me quedé sin venta</h3>
+      <p>Años después me creía imparable. Tenía enfrente al gerente de una cadena de farmacias: el pedido más grande de mi carrera. Y lo arruiné yo solo. Estaba tan enamorado de mi presentación que no lo dejé hablar. Cada vez que abría la boca para objetar algo, yo lo pisaba con otro argumento, con otro dato, con otra maravilla de mi producto.</p>
+      <p>Al final cerró la carpeta y me dijo una frase que todavía me duele: "Joven, usted vino a hablar, no a escucharme. Y yo necesitaba que me escucharan". Perdí el pedido. Pero gané algo mejor: entendí que cada objeción que atropellé era en realidad una <em>pista</em> de lo que él necesitaba, y yo las taché todas por no callarme.</p>
+      <div class="moraleja"><span class="m-tag">◆ La lección</span>La objeción no es un obstáculo: es <b>información regalada</b>. Desde ese día hablo el 30% y escucho el 70%. El que pregunta y calla, dirige. <em>(Capítulos 10 y 12: escuchar y manejar objeciones.)</em></div>
+    </article>
 
-    <div class="exercise">
-      <span class="tag">✏️ Cómo enviarme tus historias</span>
-      <h4>Con esto las escribo perfectas</h4>
-      <ul>
-        <li><strong>Contexto:</strong> qué vendías, a quién, en qué canal (presencial / teléfono).</li>
-        <li><strong>Tensión:</strong> qué salió mal o difícil, el momento clave.</li>
-        <li><strong>Desenlace:</strong> qué hiciste, qué dijiste, cómo terminó.</li>
-        <li><strong>Lección:</strong> qué aprendiste. Yo la enlazo con el principio del libro que corresponde.</li>
-      </ul>
-    </div>
+    <article class="story">
+      <span class="lbl"><span class="n">3</span> El cliente imposible</span>
+      <h3>El hombre que le decía "no" a todo el mundo</h3>
+      <p>En el gremio lo llamaban "el muro". Don Aníbal, dueño de tres ferreterías, había echado a todos los vendedores de mi empresa. Me tocó a mí. Entré sabiendo que si empezaba a vender, me sacaba en un minuto. Así que no vendí. Me senté, miré la foto de un velero en su pared y le pregunté por ella. Se le encendió la cara. Media hora de historias de mar. Yo, callado, asintiendo.</p>
+      <p>Cuando por fin miró su reloj y dijo "bueno, ¿qué me traía?", ya no era el muro: era un hombre hablándole a alguien que le caía bien. Le hice tres preguntas sobre lo que le fallaba con su proveedor actual, escuché, y le ofrecí exactamente eso. Nada más. Firmó. Al despedirme soltó: "Usted es el primero que no vino a venderme".</p>
+      <div class="moraleja"><span class="m-tag">◆ La lección</span>Con el cliente difícil, la <b>simpatía y el rapport</b> abren la puerta que ningún argumento fuerza. Primero conecta, después presenta. <em>(Capítulos 3, 5 y 9: psicología, simpatía y lenguaje corporal.)</em></div>
+    </article>
+
+    <article class="story">
+      <span class="lbl"><span class="n">4</span> La lección del call center</span>
+      <h3>Aprendí a sonreír sin que nadie me viera</h3>
+      <p>Mi primer mes en el call center fue una masacre. Cuarenta llamadas, cuarenta clics del otro lado. Estaba a punto de renunciar cuando la supervisora, una mujer que vendía el triple que todos, se sentó a mi lado y escuchó una de mis llamadas. "No sonríes", me dijo. "Se te oye el miedo". Me hizo ponerme de pie, poner un espejo frente a mí y sonreír antes de marcar.</p>
+      <p>Sonaba ridículo. Pero en la llamada siguiente, algo cambió en mi voz: más cálida, más segura. Y en los primeros diez segundos dejé de decir "le llamo para ofrecerle" y empecé con "encontré una forma de que pague menos por lo mismo que ya usa". Ese día cerré tres. Descubrí que por teléfono la voz carga el 100% de la emoción, y que la sonrisa <em>se oye</em>.</p>
+      <div class="moraleja"><span class="m-tag">◆ La lección</span>Sin rostro, tu <b>voz y tus primeros diez segundos</b> lo son todo. Ponte de pie, sonríe y abre con un beneficio. <em>(Capítulos 8 y 10: la voz y las ventas por call center.)</em></div>
+    </article>
+
+    <article class="story">
+      <span class="lbl"><span class="n">5</span> La venta de mi vida</span>
+      <h3>La casa que se vendió con un silencio</h3>
+      <p>Una pareja joven llevaba meses buscando su primera casa. Habían visto veinte, siempre con un "pero". Cuando les mostré aquella de patio grande, la mujer se quedó quieta en la cocina, mirando por la ventana hacia el jardín. Yo estaba a punto de listar los metros cuadrados y la tasa del crédito. Pero me acordé de todo lo que había aprendido a golpes, y me callé.</p>
+      <p>El silencio se estiró. Entonces ella se giró hacia su esposo y dijo bajito: "Aquí podría correr el bebé". No dije una palabra sobre el precio. Solo pregunté: "¿Se lo imaginan trayendo al niño a esta casa?". Él la abrazó. Firmaron esa tarde. No les vendí una propiedad: les vendí el lugar donde iban a criar a su familia, y lo único que tuve que hacer fue no arruinar el momento con mi discurso.</p>
+      <div class="moraleja"><span class="m-tag">◆ La lección</span>En el clímax emocional, <b>el silencio vende más que cualquier argumento</b>. Detecta la señal de compra, deja de vender y deja que la emoción cierre. <em>(Capítulos 6 y 12: la curva emocional, el silencio y el cierre.)</em></div>
+    </article>
+
+    <div class="callout mind"><span class="tag">💪 Mentalidad</span><p>Ninguna de estas ventas fue por suerte, y ninguna de mis derrotas fue en vano. Cada "no" que recibí está escrito en algún "sí" que vino después. Tu carrera será igual: una colección de historias que hoy no imaginas. <strong>Sal a construirlas.</strong></p></div>
   </div>
 </section>
 <hr class="rule">
@@ -1211,7 +1229,7 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
 <footer class="foot">
   <div class="wrap">
     <div class="brandmark"><span class="sq"></span> El Código de la Venta</div>
-    <p>Manual de ventas, persuasión y neuroventas · Con espacio reservado para tus historias reales.</p>
+    <p>Manual de ventas, persuasión y neuroventas · Con relatos desde la trinchera y ejercicios prácticos.</p>
     <p class="credit-science">Fundamentos apoyados en psicología de la decisión (Kahneman), influencia (Cialdini), comunicación (Mehrabian), metodología SPIN (Rackham) y el modelo del cerebro triuno.</p>
   </div>
 </footer>
