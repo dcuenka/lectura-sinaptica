@@ -154,6 +154,23 @@ em{color:var(--ink-soft)}
 .callout.sci .tag{color:var(--teal)}
 .callout.warn{background:var(--coral-soft);border-color:color-mix(in srgb,var(--coral) 34%,transparent)}
 .callout.warn .tag{color:var(--coral)}
+.callout.mind{background:var(--violet-soft);border-color:color-mix(in srgb,var(--violet) 34%,transparent)}
+.callout.mind .tag{color:var(--violet)}
+
+/* ---------- manifiesto motivacional ---------- */
+.manifesto{
+  background:linear-gradient(135deg,var(--violet) 0%, var(--coral) 100%);
+  color:#fff;border-radius:22px;box-shadow:var(--shadow-lg);
+  padding:clamp(30px,5vw,56px);margin:38px 0 4px;position:relative;overflow:hidden;
+}
+.manifesto .eyebrow{color:rgba(255,255,255,.85)}
+.manifesto .eyebrow .dot{background:#fff}
+.manifesto h3{color:#fff;font-size:clamp(24px,3.6vw,34px);margin:0 0 .5em}
+.manifesto p{color:rgba(255,255,255,.94);font-size:1.04em}
+.manifesto .creed{list-style:none;margin:1.1em 0 0;padding:0;display:grid;gap:.55em}
+.manifesto .creed li{padding-left:1.7em;position:relative;font-family:var(--serif);font-size:1.12em;font-weight:600}
+.manifesto .creed li::before{content:"→";position:absolute;left:0;color:#fff;font-weight:800}
+.manifesto .sign{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-top:1.4em;opacity:.85}
 
 .exercise{border:2px dashed var(--violet);background:var(--violet-soft);border-radius:16px;padding:22px 24px;margin:1.8em 0}
 .exercise .tag{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);display:flex;align-items:center;gap:.5em;margin-bottom:.5em}
@@ -286,6 +303,23 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
   </nav>
 </div>
 
+<div class="wide">
+  <aside class="manifesto" aria-label="Manifiesto del vendedor">
+    <p class="eyebrow"><span class="dot"></span> Antes de empezar · léelo de pie</p>
+    <h3>El manifiesto del vendedor</h3>
+    <p>Nadie nace vendedor. Se hace. Se entrena. Se cae mil veces y mil veces se levanta a marcar el siguiente número. El talento es solo el punto de partida; lo que separa al grande del mediocre no es el don, es la <strong>decisión de no rendirse antes que el cliente</strong>.</p>
+    <ul class="creed">
+      <li>Cada "no" me acerca al "sí". Los cuento como monedas.</li>
+      <li>No vendo productos: cambio la vida de alguien resolviéndole algo.</li>
+      <li>El miedo a que me cuelguen es más pequeño que mis ganas de lograrlo.</li>
+      <li>Practico cuando nadie mira, para brillar cuando todos miran.</li>
+      <li>Mi actitud llega antes que mi voz. Sonrío incluso por teléfono.</li>
+      <li>Hoy soy mejor que ayer. Mañana seré mejor que hoy.</li>
+    </ul>
+    <p class="sign">Repite esto cada mañana. La mentalidad se entrena igual que la técnica.</p>
+  </aside>
+</div>
+
 <main>
 
 <!-- ===================== CAP 1 ===================== -->
@@ -312,6 +346,8 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
     </div>
 
     <div class="callout key"><span class="tag">◆ Idea clave</span><p>La mayoría de los vendedores mediocres se obsesionan con la tercera capa (el producto) e ignoran las dos primeras. Los expertos invierten el orden: primero conectan con <strong>la persona</strong>, activan <strong>la emoción</strong>, y solo entonces presentan el <strong>producto</strong> como el camino natural.</p></div>
+
+    <div class="callout mind"><span class="tag">💪 Mentalidad</span><p>Si crees que "no sirves para vender", este libro es justo para ti. La venta no es carisma de nacimiento: es un músculo. Cada página de aquí en adelante es un ejercicio de ese músculo. <strong>No naciste vendedor; vas a convertirte en uno.</strong> Empieza por creer que es posible, porque lo es.</p></div>
 
     <div class="exercise">
       <span class="tag">✏️ Ejercicio 1 — El inventario del vendedor invisible</span>
@@ -939,6 +975,8 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
       </tbody>
     </table>
 
+    <div class="callout mind"><span class="tag">💪 Mentalidad</span><p>Te van a colgar. Muchas veces. No es personal: es el filtro que aleja a los que se rinden. El vendedor promedio se hunde tras cinco "no"; el grande marca el sexto número con la misma sonrisa que el primero. <strong>Tu próxima llamada no sabe nada de la anterior: dale tu mejor versión, siempre.</strong></p></div>
+
     <div class="exercise">
       <span class="tag">✏️ Ejercicio 9 — Tu guion de 60 segundos</span>
       <h4>Escribe y ensaya tu llamada</h4>
@@ -1058,6 +1096,8 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
     </table>
 
     <div class="pull">Si no pides la venta, no la haces. El "no" que más duele es el que nunca te atreviste a provocar.</div>
+
+    <div class="callout mind"><span class="tag">💪 Mentalidad</span><p>Pedir el cierre da miedo porque expone tu trabajo a un "no". Pero el "no" ya lo tienes: es lo que pasa si no pides nada. Cerrar no es arriesgar, es <strong>reclamar lo que ya construiste</strong>. El valiente que pregunta "¿empezamos?" gana más que el brillante que se queda callado esperando que el cliente adivine.</p></div>
 
     <div class="callout key"><span class="tag">◆ La regla del cierre</span><p>Detecta las <strong>señales de compra</strong> (pregunta por el precio, por la entrega, por la garantía, empieza a hablar en presente "cuando lo tenga…"). En ese instante, <strong>deja de vender y cierra</strong>. Seguir argumentando después del "sí" mental reabre dudas.</p></div>
 
