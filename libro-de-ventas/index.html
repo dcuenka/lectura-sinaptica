@@ -120,6 +120,10 @@ em{color:var(--ink-soft)}
 .hero h1{font-size:clamp(40px,9vw,88px);letter-spacing:-.03em;margin:0 0 .18em;line-height:.98}
 .hero h1 .hl{color:var(--coral)}
 .hero .sub{font-size:clamp(18px,2.4vw,24px);color:var(--ink-soft);max-width:30ch;margin:0 0 1.4em}
+.hero .byline{font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 .15em}
+.hero .byline strong{color:var(--ink);font-weight:800;letter-spacing:.08em}
+.hero .imprint{font-family:var(--serif);font-style:italic;font-weight:700;font-size:clamp(17px,2.2vw,22px);color:var(--coral);margin:0 0 1.5em;display:inline-flex;align-items:center;gap:.5em}
+.hero .imprint::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block}
 .hero .metarow{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--sans);font-size:13.5px;font-weight:600}
 .hero .chip{background:var(--surface-2);border:1px solid var(--border);padding:.5em .85em;border-radius:999px;color:var(--ink-soft)}
 .hero-art{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.9}
@@ -286,7 +290,8 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
     <span class="badge">◆ Métodos con base científica · Psicología · Neuroventas</span>
     <h1>El Código<br>de la <span class="hl">Venta</span></h1>
     <p class="sub">Todo el conocimiento para convertir a cualquier persona en un experto en ventas, persuasión y neuroventas.</p>
-    <p style="font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 1.4em">Escrito por Diego · con historias desde la trinchera</p>
+    <p class="byline">Escrito por <strong>DIEGO ALEJANDRO CUENCA A.</strong></p>
+    <p class="imprint">Procesos que cambian</p>
     <div class="metarow">
       <span class="chip">🧠 Psicología del comprador</span>
       <span class="chip">📞 Ventas por call center</span>
@@ -1314,6 +1319,8 @@ ul.clean li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heig
 <footer class="foot">
   <div class="wrap">
     <div class="brandmark"><span class="sq"></span> El Código de la Venta</div>
+    <p style="font-family:var(--sans);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-size:15px;margin-bottom:.2em">Diego Alejandro Cuenca A.</p>
+    <p style="font-family:var(--serif);font-style:italic;font-weight:700;color:var(--coral);font-size:17px;margin-bottom:1em">Procesos que cambian</p>
     <p>Manual de ventas, persuasión y neuroventas · Con relatos desde la trinchera y ejercicios prácticos.</p>
     <p class="credit-science">Fundamentos apoyados en psicología de la decisión (Kahneman), influencia (Cialdini), comunicación (Mehrabian), metodología SPIN (Rackham) y el modelo del cerebro triuno.</p>
   </div>
