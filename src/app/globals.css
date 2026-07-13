@@ -116,6 +116,27 @@ body {
   }
 }
 
+/* Impresión del libro de conceptos */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+  }
+  .book-print-area {
+    max-width: 100% !important;
+  }
+  .page-block {
+    break-inside: avoid;
+  }
+  h2 {
+    break-before: auto;
+  }
+}
+
 /* Estrellas y celebración de la pantalla de resultado */
 @keyframes star-pop {
   0% {
